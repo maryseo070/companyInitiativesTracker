@@ -1,4 +1,9 @@
-import style from './../app/assets/stylesheets/application.css';
+// import style from './../app/assets/stylesheets/application.css';
 // console.log("ENTRY DOES THIS WORK!?");
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-// import App from "./App.jsx";
+document.addEventListener("DOMContentLoaded", () => {
+  const root = document.getElementById("root");
+  ReactDOM.render(<div>test</div>);
+});
