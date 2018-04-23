@@ -17,8 +17,6 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
     "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^3.2.0",
-    "mini-css-extract-plugin": "^0.4.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "webpack": "^4.6.0",
@@ -27,7 +25,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --mode development --open",
+    "start": "webpack --watch ./frontend/entry.jsx --output ./app/assets/javascripts/wpk.js",
     "dev": "webpack --mode development ./frontend/entry.jsx --output ./app/assets/javascripts/wpk.js",
     "build": "webpack --mode production ./frontend/entry.jsx --output ./app/assets/javascripts/wpk.js"
   },

@@ -1,9 +1,8 @@
-// import style from './../app/assets/stylesheets/application.css';
-// console.log("ENTRY DOES THIS WORK!?");
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Root from './components/root.jsx';
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById("root");
-  ReactDOM.render(<div>test</div>);
+  ReactDOM.render(<Root />, root);
 });

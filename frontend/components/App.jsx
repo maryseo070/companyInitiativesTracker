@@ -4,7 +4,9 @@ import { Route } from 'react-router';
 const App = () => {
   return (
     <div>
-      App 
+      App
     </div>
-  )
-}
+  );
+};
+
+export default App;
