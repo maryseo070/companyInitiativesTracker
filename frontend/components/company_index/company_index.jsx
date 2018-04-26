@@ -1,5 +1,21 @@
 import React from 'react';
 
+
+const CompanyInfo = (company) => {
+  debugger
+  return (
+    <h1>{company.name}</h1>
+  );
+};
+// <div>
+//   <p>{company.name}</p>
+//   <p>{company.location}</p>
+//   <p>{company.description}</p>
+//   <p>{company.website}</p>
+//   <p>{company.job_postings}</p>
+//   <p>{company.size}</p>
+// </div>
+
 class CompanyIndex extends React.Component {
   constructor(props){
     super(props);
@@ -10,26 +26,19 @@ class CompanyIndex extends React.Component {
   }
 
   render () {
-    debugger
     let companies = this.props.companies.companies;
     let name;
     if (companies) {
       companies = Object.values(companies);
       companies = companies.map(company => (
-        <div>
-          <p>{company.name}</p>
-          <p>{company.location}</p>
-          <p>{company.description}</p>
-          <p>{company.website}</p>
-          <p>{company.job_postings}</p>
-          <p>{company.size}</p>
-        </div>
-
-      ))
+        <CompanyInfo key={Math.random() * 5000} company={company} />
+      ));
     }
 
     return (
-      <div>{companies}</div>
+      <section key={Math.random() * 5000}>
+        {companies}
+      </section>
     );
   }
 }
