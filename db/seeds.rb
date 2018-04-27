@@ -47,7 +47,6 @@ company1 = Company.create(
   description: "DoSomething is a community-focused organization that helps young people engage in their communities. The organization guides students in running campaigns, finding and doing volunteer work, and advocating for positive change. Their goal is to empower youth to fight for justice, engage with their passions, and make the world a better place.",
   website: "https://www.dosomething.org/us",
   job_postings: "https://www.dosomething.org/us/about/join-our-team",
-  size: 50,
   initiative_id: youth.id
 )
 
@@ -94,4 +93,72 @@ company6 = Company.create(
   website: "https://thrivemarket.com/landing/tmhome/",
   job_postings: "http://thrivemarketjobs.com/",
   initiative_id: health.id
+)
+company7 = Company.create(
+  name: "Watsi",
+  location: "San Francisco, California",
+  description: "Watsi is a nonprofit that crowdfunds medical treatment for folks in need around the world. They use technology to help create a world where everyone has access to care. 100% of donations go to patient care",
+  website: "https://watsi.org/about",
+  job_postings: "https://angel.co/watsi/jobs",
+  initiative_id: healthcare.id
+)
+company8 = Company.create(
+  name: "Omaze",
+  location: "Culver City, California",
+  description: "Omaze is an online fundraising platform. Their model democratizes traditional auction-giving by offering everyone the chance to have a once-in-a-lifetime experience for as little as $10. Through the Omaze platform, people from more than 170 countries have donated to over 150 charities, driving new levels of awareness and raising more money for charities.",
+  website: "https://www.omaze.com/",
+  job_postings: "https://boards.greenhouse.io/omaze#.Wt8lm9PwZTa",
+  initiative_id: philanthropy.id
+)
+company9 = Company.create(
+  name: "Classy",
+  location: "San Diego, California",
+  description: "Classy is an online fundraising platform designed for nonprofit organizations. It powers charity sites with a built-in donation option (rather than using say, PayPal). Classy has helped fundraising efforts jump an average of 225%.",
+  website: "https://www.classy.org/",
+  job_postings: "https://www.classy.org/careers",
+  initiative_id: philanthropy.id
+)
+
+company10 = Company.create(
+  name: "Oncora Medical",
+  location: "Philadelphia, Pennsylvania",
+  description: "Oncora Medical offers a software product that enables precision radiation oncology. Precision medicine is the practice of designing personalized treatments for each patient based on their specific characteristics and medical history. Precision radiation oncology is the practice of designing personalized radiation treatments for each individual patient seen by a radiation oncology department.",
+  website: "https://oncoramedical.com/",
+  job_postings: "https://oncoramedical.com/careers/",
+  initiative_id: health.id
+)
+
+company11 = Company.create(
+  name: "Oncora Medical",
+  location: "Philadelphia, Pennsylvania",
+  description: "Oncora Medical offers a software product that enables precision radiation oncology. Precision medicine is the practice of designing personalized treatments for each patient based on their specific characteristics and medical history. Precision radiation oncology is the practice of designing personalized radiation treatments for each individual patient seen by a radiation oncology department.",
+  website: "https://oncoramedical.com/",
+  job_postings: "https://oncoramedical.com/careers/",
+  initiative_id: health.id
+)
+
+company12 = Company.create(
+  name: "RYOT",
+  location: "Los Angeles, California",
+  description: "RYOT was founded by the former humanitarian worker Bryn Mooser. Moved by the tragedies he witnessed around the world from Haiti to Nepal, in 2012 he formed a company to create a unique immersive experience around news, that meant putting the viewer at the heart of the news experience through mixed media.",
+  website: "https://www.ryot.org/",
+  job_postings: "https://www.oath.com/careers/job-openings?jobFamily=Engineering%20and%20Technology",
+  initiative_id: health.id
+)
+company13 = Company.create(
+  name: "Bulb",
+  location: "London, England",
+  description: "On a mission to bring clean energy to the world, this startup based out of East London already has the major energy market in its sights. Bulb is helping to supply 100% green energy to customers across the UK and to boot it’s cheaper than fossil fuels. They are one company that provides an alternative energy platform for those in desperate need of a cleaner conscience.",
+  website: "https://bulb.co.uk/",
+  job_postings: "https://bulb.co.uk/careers/",
+  initiative_id: sustainability.id
+)
+
+company14 = Company.create(
+  name: "Project Loon",
+  location: "London, England",
+  description: "A little-known startup from the brains of Rich DeVeau the senior technical leader at X, formerly Google[x], this is a project that aims to explore delivering Internet access via high-altitude balloons to the 4.8 billion people who don’t have connectivity. While it may seem that the digital world has been an inevitable part of life for some time, it remains that more than half of the world’s inhabitants don’t have Internet access. This startup could lift us all into the 21st century and beyond.",
+  website: "https://x.company/loon/",
+  job_postings: "https://careers.google.com/jobs#t=sq&q=j&li=20&l=false&jlo=en-US&jl=37.3860517%3A-122.0838511%3AMountain+View%2C+CA%2C+USA%3AUS%3AUnited+States%3A9.901223692706639%3ALOCALITY&jld=20&jcoid=7143c4f4-17a1-4061-a066-69aafca4467b&j=loon&",
+  initiative_id: accessibility.id
 )

@@ -5,7 +5,7 @@ import CompanyIndex from './company_index.jsx';
 
 const msp = (state) => {
   return{
-    companies: state.entities.companies
+    companies: state.entities.companies.companies
   };
 };
 

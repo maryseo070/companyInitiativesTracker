@@ -84,7 +84,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.receiveCompanies = exports.fetchCompanies = exports.RECEIVE_COMPANIES = undefined;
+exports.receiveCompany = exports.receiveCompanies = exports.fetchCompanies = exports.fetchCompany = exports.RECEIVE_COMPANY = exports.RECEIVE_COMPANIES = undefined;
 
 var _company_api_util = __webpack_require__(/*! ../util/company_api_util.js */ "./frontend/util/company_api_util.js");
 
@@ -93,6 +93,15 @@ var CompanyApiUtil = _interopRequireWildcard(_company_api_util);
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var RECEIVE_COMPANIES = exports.RECEIVE_COMPANIES = "RECEIVE_COMPANIES";
+var RECEIVE_COMPANY = exports.RECEIVE_COMPANY = "RECEIVE_COMPANY";
+
+var fetchCompany = exports.fetchCompany = function fetchCompany(id) {
+  return function (dispatch) {
+    return CompanyApiUtil.fetchCompany(id).then(function (company) {
+      return dispatch(receiveCompany(company));
+    });
+  };
+};
 
 var fetchCompanies = exports.fetchCompanies = function fetchCompanies() {
   return function (dispatch) {
@@ -106,6 +115,13 @@ var receiveCompanies = exports.receiveCompanies = function receiveCompanies(comp
   return {
     type: RECEIVE_COMPANIES,
     companies: companies
+  };
+};
+
+var receiveCompany = exports.receiveCompany = function receiveCompany(company) {
+  return {
+    type: RECEIVE_COMPANY,
+    company: company
   };
 };
 
@@ -135,13 +151,18 @@ var _company_index_container = __webpack_require__(/*! ./company_index/company_i
 
 var _company_index_container2 = _interopRequireDefault(_company_index_container);
 
+var _company_show_container = __webpack_require__(/*! ./company_show/company_show_container.js */ "./frontend/components/company_show/company_show_container.js");
+
+var _company_show_container2 = _interopRequireDefault(_company_show_container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
   return _react2.default.createElement(
     'div',
     null,
-    _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/companies', component: _company_index_container2.default })
+    _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/companies', component: _company_index_container2.default }),
+    _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/companies/:companyId', component: _company_show_container2.default })
   );
 };
 
@@ -171,6 +192,14 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _reactRouter = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
+
+var _reactRouter2 = _interopRequireDefault(_reactRouter);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -192,32 +221,21 @@ var CompanyInfo = function CompanyInfo(company) {
       'p',
       null,
       company.location
-    ),
-    _react2.default.createElement(
-      'p',
-      null,
-      company.description
-    ),
-    _react2.default.createElement(
-      'p',
-      null,
-      company.website
-    ),
-    _react2.default.createElement(
-      'p',
-      null,
-      company.job_postings
-    ),
-    _react2.default.createElement(
-      'p',
-      null,
-      company.size
     )
   );
 };
 
-var CompanyIndex = function (_React$Component) {
-  _inherits(CompanyIndex, _React$Component);
+var FormLink = function FormLink() {
+  return _react2.default.createElement(
+    'div',
+    null,
+    'insert link to form for company after you create a component for that :)'
+  );
+};
+// <Link to={`/`}>Add a company to the database!</Link>
+
+var CompanyIndex = function (_Component) {
+  _inherits(CompanyIndex, _Component);
 
   function CompanyIndex(props) {
     _classCallCheck(this, CompanyIndex);
@@ -233,25 +251,32 @@ var CompanyIndex = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var companies = this.props.companies.companies;
-      var name = void 0;
-      if (companies) {
-        companies = Object.values(companies);
-        companies = companies.map(function (company) {
-          return _react2.default.createElement(CompanyInfo, _extends({ key: Math.random() * 5000 }, company));
-        });
-      }
+      var companies = this.props.companies;
+      var indexforKey = 1;
+      companies = Object.values(companies);
+      companies = companies.map(function (company) {
+        return _react2.default.createElement(CompanyInfo, _extends({ key: indexforKey++ }, company));
+      });
 
       return _react2.default.createElement(
         'section',
-        { key: Math.random() * 5000 },
-        companies
+        null,
+        companies,
+        _react2.default.createElement(FormLink, null)
       );
     }
   }]);
 
   return CompanyIndex;
-}(_react2.default.Component);
+}(_react.Component);
+
+CompanyIndex.propTypes = {
+  companies: _propTypes2.default.object
+};
+
+CompanyIndex.defaultProps = {
+  companies: {}
+};
 
 exports.default = CompanyIndex;
 
@@ -285,7 +310,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var msp = function msp(state) {
   return {
-    companies: state.entities.companies
+    companies: state.entities.companies.companies
   };
 };
 
@@ -298,6 +323,107 @@ var mdp = function mdp(dispatch) {
 };
 
 exports.default = (0, _reactRedux.connect)(msp, mdp)(_company_index2.default);
+
+/***/ }),
+
+/***/ "./frontend/components/company_show/company_show.jsx":
+/*!***********************************************************!*\
+  !*** ./frontend/components/company_show/company_show.jsx ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CompanyShow = function (_Component) {
+  _inherits(CompanyShow, _Component);
+
+  function CompanyShow(props) {
+    _classCallCheck(this, CompanyShow);
+
+    return _possibleConstructorReturn(this, (CompanyShow.__proto__ || Object.getPrototypeOf(CompanyShow)).call(this, props));
+  }
+
+  _createClass(CompanyShow, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        'hello'
+      );
+    }
+  }]);
+
+  return CompanyShow;
+}(_react.Component);
+
+exports.default = CompanyShow;
+
+/***/ }),
+
+/***/ "./frontend/components/company_show/company_show_container.js":
+/*!********************************************************************!*\
+  !*** ./frontend/components/company_show/company_show_container.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _company_actions = __webpack_require__(/*! ../../actions/company_actions.js */ "./frontend/actions/company_actions.js");
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _company_show = __webpack_require__(/*! ./company_show */ "./frontend/components/company_show/company_show.jsx");
+
+var _company_show2 = _interopRequireDefault(_company_show);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var msp = function msp(state) {
+  return {
+    company: state.entities.companies.company
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {
+    fetchCompany: function fetchCompany(id) {
+      return dispatch((0, _company_actions.fetchCompany)());
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(msp, mdp)(_company_show2.default);
 
 /***/ }),
 
@@ -364,7 +490,7 @@ var _reactDom = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/i
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _root = __webpack_require__(/*! ./components/root.jsx */ "./frontend/components/root.jsx");
+var _root = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
 
 var _root2 = _interopRequireDefault(_root);
 
@@ -414,6 +540,8 @@ var companyReducer = function companyReducer() {
   switch (action.type) {
     case _company_actions.RECEIVE_COMPANIES:
       return action.companies;
+    case _company_actions.RECEIVE_COMPANY:
+      return action.company;
     default:
       return state;
   }
@@ -549,6 +677,13 @@ var fetchCompanies = exports.fetchCompanies = function fetchCompanies() {
   return $.ajax({
     method: "GET",
     url: "/api/companies"
+  });
+};
+
+var fetchCompany = exports.fetchCompany = function fetchCompany(id) {
+  return $.ajax({
+    method: "GET",
+    url: "/api/companies/" + id
   });
 };
 

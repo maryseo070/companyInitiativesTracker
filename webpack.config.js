@@ -24,6 +24,8 @@ module.exports = {
   },
   devtool: 'source-map'
 };
+
+
   //     {
   //       test: /\.html$/,
   //       use: [
