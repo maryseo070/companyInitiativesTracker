@@ -358,6 +358,43 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var CompanyShowItem = function CompanyShowItem(company) {
+  return _react2.default.createElement(
+    'ul',
+    null,
+    _react2.default.createElement(
+      'li',
+      null,
+      company.name
+    ),
+    _react2.default.createElement(
+      'li',
+      null,
+      company.location
+    ),
+    _react2.default.createElement(
+      'li',
+      null,
+      company.description
+    ),
+    _react2.default.createElement(
+      'li',
+      null,
+      company.website
+    ),
+    _react2.default.createElement(
+      'li',
+      null,
+      company.job_postings
+    ),
+    _react2.default.createElement(
+      'li',
+      null,
+      'enter initiative when ready'
+    )
+  );
+};
+
 var CompanyShow = function (_Component) {
   _inherits(CompanyShow, _Component);
 
@@ -368,18 +405,29 @@ var CompanyShow = function (_Component) {
   }
 
   _createClass(CompanyShow, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.fetchCompany(this.props.match.params.companyId);
+    }
+  }, {
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        'hello'
-      );
+      var company = this.props.company;
+
+      return _react2.default.createElement(CompanyShowItem, company);
     }
   }]);
 
   return CompanyShow;
 }(_react.Component);
+
+CompanyShow.propType = {
+  company: _propTypes2.default.object
+};
+
+CompanyShow.defaultProps = {
+  company: {}
+};
 
 exports.default = CompanyShow;
 
@@ -407,6 +455,8 @@ var _company_show = __webpack_require__(/*! ./company_show */ "./frontend/compon
 
 var _company_show2 = _interopRequireDefault(_company_show);
 
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var msp = function msp(state) {
@@ -418,12 +468,12 @@ var msp = function msp(state) {
 var mdp = function mdp(dispatch) {
   return {
     fetchCompany: function fetchCompany(id) {
-      return dispatch((0, _company_actions.fetchCompany)());
+      return dispatch((0, _company_actions.fetchCompany)(id));
     }
   };
 };
 
-exports.default = (0, _reactRedux.connect)(msp, mdp)(_company_show2.default);
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(msp, mdp)(_company_show2.default));
 
 /***/ }),
 
