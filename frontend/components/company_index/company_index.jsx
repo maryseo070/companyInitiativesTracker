@@ -2,19 +2,17 @@ import React from 'react';
 
 
 const CompanyInfo = (company) => {
-  debugger
   return (
-    <h1>{company.name}</h1>
+    <div>
+      <p>{company.name}</p>
+      <p>{company.location}</p>
+      <p>{company.description}</p>
+      <p>{company.website}</p>
+      <p>{company.job_postings}</p>
+      <p>{company.size}</p>
+    </div>
   );
 };
-// <div>
-//   <p>{company.name}</p>
-//   <p>{company.location}</p>
-//   <p>{company.description}</p>
-//   <p>{company.website}</p>
-//   <p>{company.job_postings}</p>
-//   <p>{company.size}</p>
-// </div>
 
 class CompanyIndex extends React.Component {
   constructor(props){
@@ -31,7 +29,7 @@ class CompanyIndex extends React.Component {
     if (companies) {
       companies = Object.values(companies);
       companies = companies.map(company => (
-        <CompanyInfo key={Math.random() * 5000} company={company} />
+        <CompanyInfo key={Math.random() * 5000} {...company} />
       ));
     }
 
