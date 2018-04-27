@@ -33,7 +33,8 @@ class CompanyIndex extends Component {
     let indexforKey = 1;
     companies = Object.values(companies);
     companies = companies.map(company => (
-      <CompanyInfo key={indexforKey++} {...company} />
+      <CompanyInfo className="company-info" key={indexforKey++} {...company} >
+      </CompanyInfo>
     ));
 
     return (

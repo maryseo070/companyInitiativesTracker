@@ -5,6 +5,7 @@ class Api::CompaniesController < ApplicationController
 
   def show
     @company = Company.find(params[:id])
+    @initiative = @company.initiative.category
   end
 
   private

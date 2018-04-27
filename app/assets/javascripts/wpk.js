@@ -155,6 +155,8 @@ var _company_show_container = __webpack_require__(/*! ./company_show/company_sho
 
 var _company_show_container2 = _interopRequireDefault(_company_show_container);
 
+var _main_page = __webpack_require__(/*! ./main_page/main_page */ "./frontend/components/main_page/main_page.jsx");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
@@ -162,6 +164,7 @@ var App = function App() {
     'div',
     null,
     _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/companies', component: _company_index_container2.default }),
+    _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/main', component: _main_page.MainPage }),
     _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/companies/:companyId', component: _company_show_container2.default })
   );
 };
@@ -255,7 +258,7 @@ var CompanyIndex = function (_Component) {
       var indexforKey = 1;
       companies = Object.values(companies);
       companies = companies.map(function (company) {
-        return _react2.default.createElement(CompanyInfo, _extends({ key: indexforKey++ }, company));
+        return _react2.default.createElement(CompanyInfo, _extends({ className: 'company-info', key: indexforKey++ }, company));
       });
 
       return _react2.default.createElement(
@@ -390,7 +393,7 @@ var CompanyShowItem = function CompanyShowItem(company) {
     _react2.default.createElement(
       'li',
       null,
-      'enter initiative when ready'
+      company.initiative
     )
   );
 };
@@ -474,6 +477,47 @@ var mdp = function mdp(dispatch) {
 };
 
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(msp, mdp)(_company_show2.default));
+
+/***/ }),
+
+/***/ "./frontend/components/main_page/main_page.jsx":
+/*!*****************************************************!*\
+  !*** ./frontend/components/main_page/main_page.jsx ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MainPage = undefined;
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _company_index_container = __webpack_require__(/*! ../company_index/company_index_container */ "./frontend/components/company_index/company_index_container.js");
+
+var _company_index_container2 = _interopRequireDefault(_company_index_container);
+
+var _company_show_container = __webpack_require__(/*! ../company_show/company_show_container */ "./frontend/components/company_show/company_show_container.js");
+
+var _company_show_container2 = _interopRequireDefault(_company_show_container);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var MainPage = exports.MainPage = function MainPage() {
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(_company_index_container2.default, null)
+  );
+};
+
+// <CompanyShowContainer></CompanyShowContainer>
 
 /***/ }),
 

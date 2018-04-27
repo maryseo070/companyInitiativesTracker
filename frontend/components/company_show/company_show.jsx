@@ -9,7 +9,7 @@ const CompanyShowItem = (company) => {
       <li>{company.description}</li>
       <li>{company.website}</li>
       <li>{company.job_postings}</li>
-      <li>enter initiative when ready</li>
+      <li>{company.initiative}</li>
     </ul>
   );
 };
