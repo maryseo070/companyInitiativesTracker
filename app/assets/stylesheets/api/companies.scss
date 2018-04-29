@@ -1,7 +1,16 @@
 // Place all the styles related to the api::companies controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.company-info{
+
+body {
   background-color: pink;
-  color: blue;
+  font-family: Courier;
+}
+
+.comapny-info-ul{
+}
+
+.company-info-li{
+  text-transform: uppercase;
+  list-style-type: none;
 }

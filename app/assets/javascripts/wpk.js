@@ -213,16 +213,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var CompanyInfo = function CompanyInfo(company) {
   return _react2.default.createElement(
-    'div',
-    null,
+    'ul',
+    { className: 'company-info-ul' },
     _react2.default.createElement(
-      'p',
-      null,
+      'li',
+      { className: 'company-info-li' },
       company.name
     ),
     _react2.default.createElement(
-      'p',
-      null,
+      'li',
+      { className: 'company-info-li' },
       company.location
     )
   );
@@ -258,7 +258,7 @@ var CompanyIndex = function (_Component) {
       var indexforKey = 1;
       companies = Object.values(companies);
       companies = companies.map(function (company) {
-        return _react2.default.createElement(CompanyInfo, _extends({ className: 'company-info', key: indexforKey++ }, company));
+        return _react2.default.createElement(CompanyInfo, _extends({ key: indexforKey++ }, company));
       });
 
       return _react2.default.createElement(

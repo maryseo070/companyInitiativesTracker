@@ -4,10 +4,10 @@ import Link from 'react-router';
 
 const CompanyInfo = (company) => {
   return (
-    <div>
-      <p>{company.name}</p>
-      <p>{company.location}</p>
-    </div>
+    <ul className="company-info-ul">
+      <li className="company-info-li">{company.name}</li>
+      <li className="company-info-li">{company.location}</li>
+    </ul>
   );
 };
 
@@ -33,7 +33,7 @@ class CompanyIndex extends Component {
     let indexforKey = 1;
     companies = Object.values(companies);
     companies = companies.map(company => (
-      <CompanyInfo className="company-info" key={indexforKey++} {...company} >
+      <CompanyInfo key={indexforKey++} {...company} >
       </CompanyInfo>
     ));
 
