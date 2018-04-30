@@ -16,7 +16,7 @@ class ShowIndex extends Component {
     return(
       <div className="show-index">
         <CompanyIndexContainer
-          className="company-index-item"
+          className="company-index"
           companies={this.props.companies}>
         </CompanyIndexContainer>
         <CompanyShowContainer

@@ -4,10 +4,10 @@ import Link from 'react-router';
 
 const CompanyInfo = (company) => {
   return (
-    <ul className="company-info-ul">
+    <ol className="company-info-ol">
       <li className="company-info-li">{company.name}</li>
       <li className="company-info-li">{company.location}</li>
-    </ul>
+    </ol>
   );
 };
 
@@ -38,7 +38,7 @@ class CompanyIndex extends Component {
     ));
 
     return (
-      <section>
+      <section className="company-index-section">
         {companies}
         <FormLink></FormLink>
       </section>

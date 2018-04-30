@@ -212,8 +212,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var CompanyInfo = function CompanyInfo(company) {
   return _react2.default.createElement(
-    'ul',
-    { className: 'company-info-ul' },
+    'ol',
+    { className: 'company-info-ol' },
     _react2.default.createElement(
       'li',
       { className: 'company-info-li' },
@@ -262,7 +262,7 @@ var CompanyIndex = function (_Component) {
 
       return _react2.default.createElement(
         'section',
-        null,
+        { className: 'company-index-section' },
         companies,
         _react2.default.createElement(FormLink, null)
       );
@@ -550,7 +550,7 @@ var ShowIndex = function (_Component) {
         'div',
         { className: 'show-index' },
         _react2.default.createElement(_company_index_container2.default, {
-          className: 'company-index-item',
+          className: 'company-index',
           companies: this.props.companies }),
         _react2.default.createElement(_company_show_container2.default, {
           className: 'company-show-item',
