@@ -162,3 +162,93 @@ company14 = Company.create(
   job_postings: "https://careers.google.com/jobs#t=sq&q=j&li=20&l=false&jlo=en-US&jl=37.3860517%3A-122.0838511%3AMountain+View%2C+CA%2C+USA%3AUS%3AUnited+States%3A9.901223692706639%3ALOCALITY&jld=20&jcoid=7143c4f4-17a1-4061-a066-69aafca4467b&j=loon&",
   initiative_id: accessibility.id
 )
+
+company15 = Company.create(
+  name: "Andela",
+  location: "East Africa",
+  description: "Andela’s mission is to advance human potential by powering today’s teams and investing in tomorrow’s leaders. Founded in 2014, Andela's goal has been to build a network of technology leaders on the African continent and bridge the divide between the U.S and African tech sectors. Leveraging a proven, data-driven approach, they build high-performing engineering teams with Africa’s top developers to help companies overcome the tech talent shortage and build better products, faster.",
+  website: "https://andela.com/",
+  job_postings: "https://andela.com/join/",
+  initiative_id: accessibility.id
+)
+
+company16 = Company.create(
+  name: "Toms",
+  location: "Los Angeles, California",
+  description: "Sales of TOMS Shoes, Eyewear, Coffee and Bags drive Giving through the TOMS One for One® model. Every time a TOMS product is purchased, a person in need is helped.",
+  website: "https://www.toms.com/",
+  job_postings: "https://www.toms.com/jobs",
+  initiative_id: philanthropy.id
+)
+
+company17 = Company.create(
+  name: "Pigeonly",
+  location: "Las Vegas, Nevada",
+  description: "Pigeonly's mission is to improve communities by building products that reduce the destructive impact of incarceration. In addition to their low-cost jail calls, the provide a way to easily share photos, letters, and more, providing a more affordable and easier way to keep in touch with your inmate.",
+  website: "https://pigeonly.com/",
+  job_postings: "https://pigeonly.com/about/#careers",
+  initiative_id: accessibility.id
+)
+
+company18 = Company.create(
+  name: "Code.org",
+  location: "Seattle, Washington",
+  description: "Code.org is a nonprofit dedicated to expanding access to computer science in schools and increasing partiicpation by women and underrepresented miniorities. Their vision is that every student in every school has the opportunity to learn computer science.",
+  website: "https://code.org/",
+  job_postings: "https://code.org/about/jobs",
+  initiative_id: education.id
+)
+
+company19 = Company.create(
+  name: "Khan Academy",
+  location: "Mountain View, California",
+  description: "Khan Academy is a non-profit educational organization created in 2006 with the goal of creating a set of online tools that help educate students. They offer practice exercises, instructional videos, and a personalized learning dashboard that empower learners to study at their own pace in and outside the classroom.",
+  website: "https://www.khanacademy.org/",
+  job_postings: "https://www.khanacademy.org/careers",
+  initiative_id: education.id
+)
+
+company20 = Company.create(
+  name: "Raise.me",
+  location: "San Francisco, California",
+  description: "RaiseMe is a social enterprise focused on expanding access to higher education, especially among low income and first generation students. Rather than waiting until the end of high school to earn scholarships, which is often too late to impact a student's college ambitions or choices, RaiseMe enables students to earn scholarships throughout high school, starting as early as 9th grade, for doing all the things that best prepare them to succeed, whether that’s getting good grades, volunteering in the community or joining an extracurricular.",
+  website: "https://www.raise.me/",
+  job_postings: "https://www.raise.me/jobs#open-positions",
+  initiative_id: philanthropy.id
+)
+
+company21 = Company.create(
+  name: "OkHi",
+  location: "Nairobi, Kenya",
+  description: "Without a physical address, you are not included in the world. Why? Because you do not have access to the same services as people who do have an address. It is OkHi's mission to enable the 4 billion people in the world without a physical address to have access to the same services as everyone else.",
+  website: "http://www.okhi.com/",
+  job_postings: "https://okhi.recruiterbox.com/",
+  initiative_id: accessibility.id
+)
+
+company22 = Company.create(
+  name: "Healthify",
+  location: "New York, New York",
+  description: "Healthify helps health plans, hospitals, and provider networks work better in low-income communities by making quick and accurate referrals for patients who need additional help from social services.",
+  website: "https://www.healthify.us/",
+  job_postings: "https://healthify.workable.com/",
+  initiative_id: healthcare.id
+)
+
+company23 = Company.create(
+  name: "TriggerHealth",
+  location: "New York, New York",
+  description: "Aimed at dramatically reducing recidivism rates for those in early substance abuse recovery, TriggerHealth's platform utilizes phone sensors and phone data to predict the state of somebody’s recovery in real-time, enabling the right care to be delivered proactively when it is needed most.",
+  website: "https://triggrhealth.com/",
+  job_postings: "https://angel.co/triggr-health/jobs",
+  initiative_id: healthcare.id
+)
+
+company24 = Company.create(
+  name: "Exygy",
+  location: "San Francisco, California",
+  description: "Exygy provides design, engineering and social impact consulting for mission-driven organizations including Google.org, the Skoll Foundation, Unicef, USAID and the city and county of San Francisco. Traditional design & engineering consultancies take world-class tech talent and hire them out to the highest business bidders, which means that those businesses make better products but the world doesn’t necessarily become a more just place. Exygy is filled with world-class talent, but only applies that talent to solving world-bettering problems.",
+  website: "https://exygy.com/",
+  job_postings: "https://exygy.com/careers/",
+  initiative_id: healthcare.id
+)
