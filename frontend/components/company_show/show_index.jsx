@@ -13,12 +13,15 @@ class ShowIndex extends Component {
     this.props.fetchCompanies();
   }
   render() {
-    debugger
     return(
       <div className="show-index">
-        <CompanyIndexContainer companies={this.props.companies}>
+        <CompanyIndexContainer
+          className="company-index-item"
+          companies={this.props.companies}>
         </CompanyIndexContainer>
-        <CompanyShowContainer className="company-show-item" company={this.props.company}>
+        <CompanyShowContainer
+          className="company-show-item"
+          company={this.props.company}>
         </CompanyShowContainer>
         <div>buttons and stuff</div>
       </div>

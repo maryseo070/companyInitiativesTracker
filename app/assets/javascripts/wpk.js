@@ -546,12 +546,15 @@ var ShowIndex = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      debugger;
       return _react2.default.createElement(
         'div',
         { className: 'show-index' },
-        _react2.default.createElement(_company_index_container2.default, { companies: this.props.companies }),
-        _react2.default.createElement(_company_show_container2.default, { className: 'company-show-item', company: this.props.company }),
+        _react2.default.createElement(_company_index_container2.default, {
+          className: 'company-index-item',
+          companies: this.props.companies }),
+        _react2.default.createElement(_company_show_container2.default, {
+          className: 'company-show-item',
+          company: this.props.company }),
         _react2.default.createElement(
           'div',
           null,

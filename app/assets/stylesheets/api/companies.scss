@@ -7,8 +7,8 @@ body {
   font-family: Courier;
 }
 
-.comapny-info-ul{
-
+.company-info-ul{
+  background-color: purple;
 }
 
 .company-info-li{
@@ -17,10 +17,16 @@ body {
 }
 
 .company-show-ul{
+  background-color: green;
   list-style-type: none;
 }
 
 .show-index{
   display: grid;
   grid-template-columns: 25% 50% 25%;
+}
+
+.company-index-item {
+  height: 100vh;
+  overflow: scroll;
 }
