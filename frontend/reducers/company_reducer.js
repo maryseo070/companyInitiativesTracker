@@ -5,9 +5,9 @@ const companyReducer = (state = {}, action) => {
   Object.freeze(state);
   switch(action.type) {
     case RECEIVE_COMPANIES:
-      return action.companies;
+      return merge({}, state, action.companies);
     case RECEIVE_COMPANY:
-      return action.company;
+      return merge({}, state, action.company);
     default:
       return state;
   }

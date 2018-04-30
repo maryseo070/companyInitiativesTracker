@@ -1,18 +1,27 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import CompanyIndexContainer from './company_index_container';
 
-const CompanyShowItem = (company) => {
+export const CompanyShowItem = (company) => {
   return (
-    <ul>
-      <li>{company.name}</li>
-      <li>{company.location}</li>
-      <li>{company.description}</li>
-      <li>{company.website}</li>
-      <li>{company.job_postings}</li>
-      <li>{company.initiative}</li>
+    <ul className="company-show-ul">
+      <li className="company-show-li">{company.name}</li>
+      <li className="company-show-li">{company.location}</li>
+      <li className="company-show-li">{company.description}</li>
+      <a className="company-show-li"
+        href={`${company.website}`}>
+        {company.name} Website
+      </a>
+      <br></br>
+      <a className="company-show-li"
+        href={`${company.job_postings}`}>
+        {company.name} Job Postings
+      </a>
+      <li className="company-show-li">{company.initiative}</li>
     </ul>
   );
 };
+
 
 class CompanyShow extends Component {
   constructor(props) {
@@ -27,7 +36,9 @@ class CompanyShow extends Component {
     let company = this.props.company;
 
     return(
-      <CompanyShowItem {...company}></CompanyShowItem>
+      <CompanyShowItem className="company-show-item"
+        {...company}>
+      </CompanyShowItem>
     );
   }
 }

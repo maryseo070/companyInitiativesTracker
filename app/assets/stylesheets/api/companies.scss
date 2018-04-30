@@ -8,9 +8,19 @@ body {
 }
 
 .comapny-info-ul{
+
 }
 
 .company-info-li{
   text-transform: uppercase;
   list-style-type: none;
+}
+
+.company-show-ul{
+  list-style-type: none;
+}
+
+.show-index{
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
 }

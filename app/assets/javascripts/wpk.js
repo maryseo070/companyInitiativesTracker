@@ -147,15 +147,13 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
 
-var _company_index_container = __webpack_require__(/*! ./company_index/company_index_container */ "./frontend/components/company_index/company_index_container.js");
-
-var _company_index_container2 = _interopRequireDefault(_company_index_container);
-
 var _company_show_container = __webpack_require__(/*! ./company_show/company_show_container.js */ "./frontend/components/company_show/company_show_container.js");
 
 var _company_show_container2 = _interopRequireDefault(_company_show_container);
 
-var _main_page = __webpack_require__(/*! ./main_page/main_page */ "./frontend/components/main_page/main_page.jsx");
+var _show_index_container = __webpack_require__(/*! ./company_show/show_index_container */ "./frontend/components/company_show/show_index_container.js");
+
+var _show_index_container2 = _interopRequireDefault(_show_index_container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -163,20 +161,21 @@ var App = function App() {
   return _react2.default.createElement(
     'div',
     null,
-    _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/companies', component: _company_index_container2.default }),
-    _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/main', component: _main_page.MainPage }),
-    _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/companies/:companyId', component: _company_show_container2.default })
+    _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/companies/:companyId', component: _show_index_container2.default })
   );
 };
 
+// <Route exact path="/companies" component={CompanyIndexContainer} />
+
+// import{MainPage} from './main_page/main_page';
 exports.default = App;
 
 /***/ }),
 
-/***/ "./frontend/components/company_index/company_index.jsx":
-/*!*************************************************************!*\
-  !*** ./frontend/components/company_index/company_index.jsx ***!
-  \*************************************************************/
+/***/ "./frontend/components/company_show/company_index.jsx":
+/*!************************************************************!*\
+  !*** ./frontend/components/company_show/company_index.jsx ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -285,10 +284,10 @@ exports.default = CompanyIndex;
 
 /***/ }),
 
-/***/ "./frontend/components/company_index/company_index_container.js":
-/*!**********************************************************************!*\
-  !*** ./frontend/components/company_index/company_index_container.js ***!
-  \**********************************************************************/
+/***/ "./frontend/components/company_show/company_index_container.js":
+/*!*********************************************************************!*\
+  !*** ./frontend/components/company_show/company_index_container.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -305,7 +304,7 @@ var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-r
 
 var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 
-var _company_index = __webpack_require__(/*! ./company_index.jsx */ "./frontend/components/company_index/company_index.jsx");
+var _company_index = __webpack_require__(/*! ./company_index.jsx */ "./frontend/components/company_show/company_index.jsx");
 
 var _company_index2 = _interopRequireDefault(_company_index);
 
@@ -342,6 +341,9 @@ exports.default = (0, _reactRedux.connect)(msp, mdp)(_company_index2.default);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.CompanyShowItem = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -353,6 +355,10 @@ var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-type
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
+var _company_index_container = __webpack_require__(/*! ./company_index_container */ "./frontend/components/company_show/company_index_container.js");
+
+var _company_index_container2 = _interopRequireDefault(_company_index_container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -361,38 +367,43 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var CompanyShowItem = function CompanyShowItem(company) {
+var CompanyShowItem = exports.CompanyShowItem = function CompanyShowItem(company) {
   return _react2.default.createElement(
     'ul',
-    null,
+    { className: 'company-show-ul' },
     _react2.default.createElement(
       'li',
-      null,
+      { className: 'company-show-li' },
       company.name
     ),
     _react2.default.createElement(
       'li',
-      null,
+      { className: 'company-show-li' },
       company.location
     ),
     _react2.default.createElement(
       'li',
-      null,
+      { className: 'company-show-li' },
       company.description
     ),
     _react2.default.createElement(
-      'li',
-      null,
-      company.website
+      'a',
+      { className: 'company-show-li',
+        href: '' + company.website },
+      company.name,
+      ' Website'
+    ),
+    _react2.default.createElement('br', null),
+    _react2.default.createElement(
+      'a',
+      { className: 'company-show-li',
+        href: '' + company.job_postings },
+      company.name,
+      ' Job Postings'
     ),
     _react2.default.createElement(
       'li',
-      null,
-      company.job_postings
-    ),
-    _react2.default.createElement(
-      'li',
-      null,
+      { className: 'company-show-li' },
       company.initiative
     )
   );
@@ -417,7 +428,8 @@ var CompanyShow = function (_Component) {
     value: function render() {
       var company = this.props.company;
 
-      return _react2.default.createElement(CompanyShowItem, company);
+      return _react2.default.createElement(CompanyShowItem, _extends({ className: 'company-show-item'
+      }, company));
     }
   }]);
 
@@ -480,10 +492,10 @@ exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(msp, 
 
 /***/ }),
 
-/***/ "./frontend/components/main_page/main_page.jsx":
-/*!*****************************************************!*\
-  !*** ./frontend/components/main_page/main_page.jsx ***!
-  \*****************************************************/
+/***/ "./frontend/components/company_show/show_index.jsx":
+/*!*********************************************************!*\
+  !*** ./frontend/components/company_show/show_index.jsx ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -493,31 +505,114 @@ exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(msp, 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.MainPage = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _company_index_container = __webpack_require__(/*! ../company_index/company_index_container */ "./frontend/components/company_index/company_index_container.js");
-
-var _company_index_container2 = _interopRequireDefault(_company_index_container);
-
-var _company_show_container = __webpack_require__(/*! ../company_show/company_show_container */ "./frontend/components/company_show/company_show_container.js");
+var _company_show_container = __webpack_require__(/*! ./company_show_container */ "./frontend/components/company_show/company_show_container.js");
 
 var _company_show_container2 = _interopRequireDefault(_company_show_container);
 
+var _company_index_container = __webpack_require__(/*! ./company_index_container */ "./frontend/components/company_show/company_index_container.js");
+
+var _company_index_container2 = _interopRequireDefault(_company_index_container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var MainPage = exports.MainPage = function MainPage() {
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(_company_index_container2.default, null)
-  );
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ShowIndex = function (_Component) {
+  _inherits(ShowIndex, _Component);
+
+  function ShowIndex(props) {
+    _classCallCheck(this, ShowIndex);
+
+    return _possibleConstructorReturn(this, (ShowIndex.__proto__ || Object.getPrototypeOf(ShowIndex)).call(this, props));
+  }
+
+  _createClass(ShowIndex, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.fetchCompany();
+      this.props.fetchCompanies();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      debugger;
+      return _react2.default.createElement(
+        'div',
+        { className: 'show-index' },
+        _react2.default.createElement(_company_index_container2.default, { companies: this.props.companies }),
+        _react2.default.createElement(_company_show_container2.default, { className: 'company-show-item', company: this.props.company }),
+        _react2.default.createElement(
+          'div',
+          null,
+          'buttons and stuff'
+        )
+      );
+    }
+  }]);
+
+  return ShowIndex;
+}(_react.Component);
+
+exports.default = ShowIndex;
+
+/***/ }),
+
+/***/ "./frontend/components/company_show/show_index_container.js":
+/*!******************************************************************!*\
+  !*** ./frontend/components/company_show/show_index_container.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _company_actions = __webpack_require__(/*! ../../actions/company_actions.js */ "./frontend/actions/company_actions.js");
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _show_index = __webpack_require__(/*! ./show_index */ "./frontend/components/company_show/show_index.jsx");
+
+var _show_index2 = _interopRequireDefault(_show_index);
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var msp = function msp(state) {
+  return {
+    company: state.entities.companies.company,
+    companies: state.entities.companies.companies
+  };
 };
 
-// <CompanyShowContainer></CompanyShowContainer>
+var mdp = function mdp(dispatch) {
+  return {
+    fetchCompany: function fetchCompany(id) {
+      return dispatch((0, _company_actions.fetchCompany)(id));
+    },
+    fetchCompanies: function fetchCompanies() {
+      return dispatch((0, _company_actions.fetchCompanies)());
+    }
+  };
+};
+
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(msp, mdp)(_show_index2.default));
 
 /***/ }),
 
@@ -633,9 +728,9 @@ var companyReducer = function companyReducer() {
   Object.freeze(state);
   switch (action.type) {
     case _company_actions.RECEIVE_COMPANIES:
-      return action.companies;
+      return (0, _lodash.merge)({}, state, action.companies);
     case _company_actions.RECEIVE_COMPANY:
-      return action.company;
+      return (0, _lodash.merge)({}, state, action.company);
     default:
       return state;
   }
