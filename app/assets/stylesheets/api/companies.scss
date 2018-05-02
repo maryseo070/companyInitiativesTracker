@@ -51,4 +51,18 @@ body {
   height: 100vh;
   overflow: scroll;
   background-color: orange;
+	overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+	width: 7px;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+		background-color: pink;
+}
+::-webkit-scrollbar-thumb {
+    background: purple;
+    border-radius: 10px;
+
 }

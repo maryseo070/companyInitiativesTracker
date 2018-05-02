@@ -1,17 +1,19 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Link from 'react-router';
+import {Link} from 'react-router-dom';
 
-const CompanyInfo = (company) => {
+export const CompanyInfo = (company) => {
+
   return (
     <ol className="company-info-ol">
-      <li className="company-info-li">{company.name}</li>
+      <Link to={`/companies/${company.id}`} className="company-info-li">{company.name}</Link>
       <li className="company-info-li">{company.location}</li>
     </ol>
   );
 };
 
-const FormLink = () => {
+// <a href={`/companies/${company.id}`} className="company-info-li">{company.name}</a>
+export const FormLink = () => {
   return (
     <div>
       insert link to form for company after you create a component for that :)

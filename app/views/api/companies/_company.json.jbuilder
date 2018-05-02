@@ -1,1 +1,1 @@
-json.extract! company, :name, :location, :description, :website, :job_postings, :size, :initiative_id
+json.extract! company, :name, :id, :location, :description, :website, :job_postings, :size, :initiative_id

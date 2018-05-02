@@ -185,6 +185,7 @@ exports.default = App;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.FormLink = exports.CompanyInfo = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -198,9 +199,7 @@ var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-type
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _reactRouter = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
-
-var _reactRouter2 = _interopRequireDefault(_reactRouter);
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -210,13 +209,14 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var CompanyInfo = function CompanyInfo(company) {
+var CompanyInfo = exports.CompanyInfo = function CompanyInfo(company) {
+
   return _react2.default.createElement(
     'ol',
     { className: 'company-info-ol' },
     _react2.default.createElement(
-      'li',
-      { className: 'company-info-li' },
+      _reactRouterDom.Link,
+      { to: '/companies/' + company.id, className: 'company-info-li' },
       company.name
     ),
     _react2.default.createElement(
@@ -227,7 +227,8 @@ var CompanyInfo = function CompanyInfo(company) {
   );
 };
 
-var FormLink = function FormLink() {
+// <a href={`/companies/${company.id}`} className="company-info-li">{company.name}</a>
+var FormLink = exports.FormLink = function FormLink() {
   return _react2.default.createElement(
     'div',
     null,
@@ -538,6 +539,15 @@ var ShowIndex = function (_Component) {
   }
 
   _createClass(ShowIndex, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+
+      if (this.props.match.params.companyId !== nextProps.match.params.companyId) {
+        this.props.fetchCompany(nextProps.match.params.companyId);
+        this.props.fetchCompanies();
+      }
+    }
+  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.props.fetchCompany();
@@ -546,6 +556,7 @@ var ShowIndex = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      // debugger
       return _react2.default.createElement(
         'div',
         { className: 'show-index' },
