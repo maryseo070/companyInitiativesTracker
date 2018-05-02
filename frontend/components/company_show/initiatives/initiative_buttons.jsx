@@ -4,18 +4,36 @@ import PropTypes from 'prop-types';
 class InitiativeButtons extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      comps: []
+    };
+    this.fetchRelatedCompanies = this.fetchRelatedCompanies.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchInitiatives();
+    // console.log(this.props);
+  }
+
+  fetchRelatedCompanies(initId) {
+    // console.log(initId);
+    debugger
+    let childCompanies = Object.values(this.props.companies);
+    childCompanies = childCompanies.filter(
+        company => company.initiative_id === initId
+      );
+    this.setState({comps: childCompanies});
+    console.log(this.state);
   }
 
   render () {
     let initiatives = this.props.initiatives;
     initiatives = Object.values(initiatives);
-    initiatives = initiatives.map(i => (
-      <div>{i.category}</div>
-    ))
+    initiatives = initiatives.map((i, key) => (
+      <button
+        key={key}
+        onClick={() => this.fetchRelatedCompanies(i.id)}>{i.category}</button>
+    ));
     return(
       <section>
         {initiatives}
@@ -25,11 +43,13 @@ class InitiativeButtons extends Component {
 }
 
 InitiativeButtons.propTypes = {
-  initiatives: PropTypes.object
+  initiatives: PropTypes.object,
+  companies: PropTypes.object
 };
 
 InitiativeButtons.defaultProps = {
-  initiatives: {}
+  initiatives: {},
+  companies: {}
 };
 
 export default InitiativeButtons;

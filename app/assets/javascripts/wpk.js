@@ -547,23 +547,48 @@ var InitiativeButtons = function (_Component) {
   function InitiativeButtons(props) {
     _classCallCheck(this, InitiativeButtons);
 
-    return _possibleConstructorReturn(this, (InitiativeButtons.__proto__ || Object.getPrototypeOf(InitiativeButtons)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (InitiativeButtons.__proto__ || Object.getPrototypeOf(InitiativeButtons)).call(this, props));
+
+    _this.state = {
+      comps: []
+    };
+    _this.fetchRelatedCompanies = _this.fetchRelatedCompanies.bind(_this);
+    return _this;
   }
 
   _createClass(InitiativeButtons, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.props.fetchInitiatives();
+      // console.log(this.props);
+    }
+  }, {
+    key: 'fetchRelatedCompanies',
+    value: function fetchRelatedCompanies(initId) {
+      // console.log(initId);
+      debugger;
+      var childCompanies = Object.values(this.props.companies);
+      childCompanies = childCompanies.filter(function (company) {
+        return company.initiative_id === initId;
+      });
+      this.setState({ comps: childCompanies });
+      console.log(this.state);
     }
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       var initiatives = this.props.initiatives;
       initiatives = Object.values(initiatives);
-      initiatives = initiatives.map(function (i) {
+      initiatives = initiatives.map(function (i, key) {
         return _react2.default.createElement(
-          'div',
-          null,
+          'button',
+          {
+            key: key,
+            onClick: function onClick() {
+              return _this2.fetchRelatedCompanies(i.id);
+            } },
           i.category
         );
       });
@@ -579,11 +604,13 @@ var InitiativeButtons = function (_Component) {
 }(_react.Component);
 
 InitiativeButtons.propTypes = {
-  initiatives: _propTypes2.default.object
+  initiatives: _propTypes2.default.object,
+  companies: _propTypes2.default.object
 };
 
 InitiativeButtons.defaultProps = {
-  initiatives: {}
+  initiatives: {},
+  companies: {}
 };
 
 exports.default = InitiativeButtons;
@@ -618,7 +645,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var msp = function msp(state) {
   return {
-    initiatives: state.entities.companies.initiatives
+    initiatives: state.entities.companies.initiatives,
+    companies: state.entities.companies.companies
   };
 };
 
@@ -688,14 +716,12 @@ var ShowIndex = function (_Component) {
     value: function componentWillReceiveProps(nextProps) {
       if (this.props.match.params.companyId !== nextProps.match.params.companyId) {
         this.props.fetchCompany(nextProps.match.params.companyId);
-        // this.props.fetchCompanies();
       }
     }
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.props.fetchCompany();
-      this.props.fetchCompanies();
     }
   }, {
     key: 'render',

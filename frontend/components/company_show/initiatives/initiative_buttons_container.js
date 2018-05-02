@@ -6,7 +6,8 @@ import {withRouter} from 'react-router-dom';
 
 const msp = state => {
   return {
-    initiatives: state.entities.companies.initiatives
+    initiatives: state.entities.companies.initiatives,
+    companies: state.entities.companies.companies
   };
 };
 

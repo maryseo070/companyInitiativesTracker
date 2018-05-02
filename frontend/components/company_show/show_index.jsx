@@ -12,13 +12,11 @@ class ShowIndex extends Component {
     if (this.props.match.params.companyId
       !== nextProps.match.params.companyId) {
       this.props.fetchCompany(nextProps.match.params.companyId);
-      // this.props.fetchCompanies();
     }
   }
 
   componentDidMount () {
     this.props.fetchCompany();
-    this.props.fetchCompanies();
   }
   render() {
     // debugger
