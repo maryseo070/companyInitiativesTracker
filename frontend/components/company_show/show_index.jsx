@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import CompanyShowContainer from './company_show_container';
 import CompanyIndexContainer from './company_index_container';
-
+import InitiativeButtonsContainer from './initiatives/initiative_buttons_container';
 
 class ShowIndex extends Component {
   constructor(props) {
@@ -9,10 +9,10 @@ class ShowIndex extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-
-    if (this.props.match.params.companyId !== nextProps.match.params.companyId) {
+    if (this.props.match.params.companyId
+      !== nextProps.match.params.companyId) {
       this.props.fetchCompany(nextProps.match.params.companyId);
-      this.props.fetchCompanies();
+      // this.props.fetchCompanies();
     }
   }
 
@@ -32,7 +32,8 @@ class ShowIndex extends Component {
           className="company-show-item"
           company={this.props.company}>
         </CompanyShowContainer>
-        <div>buttons and stuff</div>
+        <InitiativeButtonsContainer >
+        </InitiativeButtonsContainer>
       </div>
     );
   }

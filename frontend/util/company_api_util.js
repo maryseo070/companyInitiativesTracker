@@ -11,3 +11,10 @@ export const fetchCompany = (id) => {
     url: `/api/companies/${id}`
   });
 };
+
+export const fetchInitiatives = () => {
+  return $.ajax({
+    method: "GET",
+    url: "/api/initiatives"
+  });
+};
