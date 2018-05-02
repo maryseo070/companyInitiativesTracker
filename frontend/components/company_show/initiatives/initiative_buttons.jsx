@@ -16,14 +16,12 @@ class InitiativeButtons extends Component {
   }
 
   fetchRelatedCompanies(initId) {
-    // console.log(initId);
-    debugger
     let childCompanies = Object.values(this.props.companies);
     childCompanies = childCompanies.filter(
         company => company.initiative_id === initId
       );
-    this.setState({comps: childCompanies});
-    console.log(this.state);
+    // this.setState({comps: childCompanies});
+    console.log(childCompanies);
   }
 
   render () {

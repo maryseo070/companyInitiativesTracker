@@ -565,14 +565,12 @@ var InitiativeButtons = function (_Component) {
   }, {
     key: 'fetchRelatedCompanies',
     value: function fetchRelatedCompanies(initId) {
-      // console.log(initId);
-      debugger;
       var childCompanies = Object.values(this.props.companies);
       childCompanies = childCompanies.filter(function (company) {
         return company.initiative_id === initId;
       });
-      this.setState({ comps: childCompanies });
-      console.log(this.state);
+      // this.setState({comps: childCompanies});
+      console.log(childCompanies);
     }
   }, {
     key: 'render',

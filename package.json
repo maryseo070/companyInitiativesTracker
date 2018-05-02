@@ -45,6 +45,10 @@
     "dev": "webpack --mode development ./frontend/entry.jsx --output ./app/assets/javascripts/wpk.js",
     "build": "webpack --mode production ./frontend/entry.jsx --output ./app/assets/javascripts/wpk.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maryseo070/companyInitiativesTracker.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC"

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
-import {fetchCompanies} from './actions/company_actions.js';
+import { fetchCompanies } from './actions/company_actions.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;

@@ -6,6 +6,7 @@ import InitiativeButtonsContainer from './initiatives/initiative_buttons_contain
 class ShowIndex extends Component {
   constructor(props) {
     super(props);
+
   }
 
   componentWillReceiveProps(nextProps) {
