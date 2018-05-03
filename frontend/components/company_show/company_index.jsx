@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { selectChildCompanies } from '../../reducers/selectors.js';
 
 export const CompanyInfo = (company) => {
 
@@ -31,7 +32,7 @@ class CompanyIndex extends Component {
     this.props.fetchCompanies();
   }
   render () {
-    let companies = this.props.companies;
+    let companies = selectChildCompanies(this.props.companies, this.props.initFilter);
     let indexforKey = 1;
     companies = Object.values(companies);
     companies = companies.map(company => (

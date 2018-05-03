@@ -217,6 +217,8 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 
+var _selectors = __webpack_require__(/*! ../../reducers/selectors.js */ "./frontend/reducers/selectors.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -270,7 +272,7 @@ var CompanyIndex = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var companies = this.props.companies;
+      var companies = (0, _selectors.selectChildCompanies)(this.props.companies, this.props.initFilter);
       var indexforKey = 1;
       companies = Object.values(companies);
       companies = companies.map(function (company) {
@@ -549,9 +551,6 @@ var InitiativeButtons = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (InitiativeButtons.__proto__ || Object.getPrototypeOf(InitiativeButtons)).call(this, props));
 
-    _this.state = {
-      comps: []
-    };
     _this.fetchRelatedCompanies = _this.fetchRelatedCompanies.bind(_this);
     return _this;
   }
@@ -680,6 +679,10 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _company_show_container = __webpack_require__(/*! ./company_show_container */ "./frontend/components/company_show/company_show_container.js");
 
 var _company_show_container2 = _interopRequireDefault(_company_show_container);
@@ -706,10 +709,43 @@ var ShowIndex = function (_Component) {
   function ShowIndex(props) {
     _classCallCheck(this, ShowIndex);
 
-    return _possibleConstructorReturn(this, (ShowIndex.__proto__ || Object.getPrototypeOf(ShowIndex)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (ShowIndex.__proto__ || Object.getPrototypeOf(ShowIndex)).call(this, props));
+
+    _this.state = {
+      initId: 0
+    };
+    _this.initiativeButtons = _this.initiativeButtons.bind(_this);
+    _this.handleClick = _this.handleClick.bind(_this);
+    return _this;
   }
 
   _createClass(ShowIndex, [{
+    key: 'handleClick',
+    value: function handleClick() {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState({ initId: e.target.value });
+      };
+    }
+  }, {
+    key: 'initiativeButtons',
+    value: function initiativeButtons() {
+      var _this3 = this;
+
+      var initiatives = this.props.initiatives;
+      initiatives = Object.values(initiatives);
+      return initiatives.map(function (i, key) {
+        return _react2.default.createElement(
+          'button',
+          {
+            key: key,
+            onClick: _this3.handleClick(), value: i.id },
+          i.category
+        );
+      });
+    }
+  }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
       if (this.props.match.params.companyId !== nextProps.match.params.companyId) {
@@ -720,6 +756,7 @@ var ShowIndex = function (_Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.props.fetchCompany();
+      this.props.fetchInitiatives();
     }
   }, {
     key: 'render',
@@ -730,17 +767,33 @@ var ShowIndex = function (_Component) {
         { className: 'show-index' },
         _react2.default.createElement(_company_index_container2.default, {
           className: 'company-index',
-          companies: this.props.companies }),
+          companies: this.props.companies, initFilter: this.state.initId }),
         _react2.default.createElement(_company_show_container2.default, {
           className: 'company-show-item',
           company: this.props.company }),
-        _react2.default.createElement(_initiative_buttons_container2.default, null)
+        _react2.default.createElement(
+          'section',
+          null,
+          this.initiativeButtons()
+        )
       );
     }
   }]);
 
   return ShowIndex;
 }(_react.Component);
+
+ShowIndex.propTypes = {
+  initiatives: _propTypes2.default.object,
+  company: _propTypes2.default.object,
+  companies: _propTypes2.default.object
+};
+
+ShowIndex.defaultProps = {
+  initiatives: {},
+  company: {},
+  companies: {}
+};
 
 exports.default = ShowIndex;
 
@@ -775,7 +828,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var msp = function msp(state) {
   return {
     company: state.entities.companies.company,
-    companies: state.entities.companies.companies
+    companies: state.entities.companies.companies,
+    initiatives: state.entities.companies.initiatives
   };
 };
 
@@ -786,6 +840,9 @@ var mdp = function mdp(dispatch) {
     },
     fetchCompanies: function fetchCompanies() {
       return dispatch((0, _company_actions.fetchCompanies)());
+    },
+    fetchInitiatives: function fetchInitiatives() {
+      return dispatch((0, _company_actions.fetchInitiatives)());
     }
   };
 };
@@ -977,6 +1034,31 @@ var rootReducer = (0, _redux.combineReducers)({
 });
 // import errorsReducer from './errors_reducer';
 exports.default = rootReducer;
+
+/***/ }),
+
+/***/ "./frontend/reducers/selectors.js":
+/*!****************************************!*\
+  !*** ./frontend/reducers/selectors.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var selectChildCompanies = exports.selectChildCompanies = function selectChildCompanies(companies, initFilter) {
+  var companyArr = Object.values(companies);
+  if (initFilter === 0) {
+    return companies;
+  }
+  return companyArr.filter(function (company) {
+    return company.initiative_id === Number(initFilter);
+  });
+};
 
 /***/ }),
 
