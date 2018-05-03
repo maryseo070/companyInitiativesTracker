@@ -392,12 +392,12 @@ var CompanyShowItem = exports.CompanyShowItem = function CompanyShowItem(company
     { className: 'company-show-ul' },
     _react2.default.createElement(
       'li',
-      { className: 'company-show-li' },
+      { className: 'company-show-li-name' },
       company.name
     ),
     _react2.default.createElement(
       'li',
-      { className: 'company-show-li' },
+      { className: 'company-show-li-location' },
       company.location
     ),
     _react2.default.createElement(
@@ -423,6 +423,7 @@ var CompanyShowItem = exports.CompanyShowItem = function CompanyShowItem(company
     _react2.default.createElement(
       'li',
       { className: 'company-show-li' },
+      'Initiative Category: ',
       company.initiative
     )
   );
@@ -511,154 +512,6 @@ exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(msp, 
 
 /***/ }),
 
-/***/ "./frontend/components/company_show/initiatives/initiative_buttons.jsx":
-/*!*****************************************************************************!*\
-  !*** ./frontend/components/company_show/initiatives/initiative_buttons.jsx ***!
-  \*****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var InitiativeButtons = function (_Component) {
-  _inherits(InitiativeButtons, _Component);
-
-  function InitiativeButtons(props) {
-    _classCallCheck(this, InitiativeButtons);
-
-    var _this = _possibleConstructorReturn(this, (InitiativeButtons.__proto__ || Object.getPrototypeOf(InitiativeButtons)).call(this, props));
-
-    _this.fetchRelatedCompanies = _this.fetchRelatedCompanies.bind(_this);
-    return _this;
-  }
-
-  _createClass(InitiativeButtons, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.props.fetchInitiatives();
-      // console.log(this.props);
-    }
-  }, {
-    key: 'fetchRelatedCompanies',
-    value: function fetchRelatedCompanies(initId) {
-      var childCompanies = Object.values(this.props.companies);
-      childCompanies = childCompanies.filter(function (company) {
-        return company.initiative_id === initId;
-      });
-      // this.setState({comps: childCompanies});
-      console.log(childCompanies);
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var initiatives = this.props.initiatives;
-      initiatives = Object.values(initiatives);
-      initiatives = initiatives.map(function (i, key) {
-        return _react2.default.createElement(
-          'button',
-          {
-            key: key,
-            onClick: function onClick() {
-              return _this2.fetchRelatedCompanies(i.id);
-            } },
-          i.category
-        );
-      });
-      return _react2.default.createElement(
-        'section',
-        null,
-        initiatives
-      );
-    }
-  }]);
-
-  return InitiativeButtons;
-}(_react.Component);
-
-InitiativeButtons.propTypes = {
-  initiatives: _propTypes2.default.object,
-  companies: _propTypes2.default.object
-};
-
-InitiativeButtons.defaultProps = {
-  initiatives: {},
-  companies: {}
-};
-
-exports.default = InitiativeButtons;
-
-/***/ }),
-
-/***/ "./frontend/components/company_show/initiatives/initiative_buttons_container.js":
-/*!**************************************************************************************!*\
-  !*** ./frontend/components/company_show/initiatives/initiative_buttons_container.js ***!
-  \**************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _company_actions = __webpack_require__(/*! ../../../actions/company_actions.js */ "./frontend/actions/company_actions.js");
-
-var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-
-var _initiative_buttons = __webpack_require__(/*! ./initiative_buttons.jsx */ "./frontend/components/company_show/initiatives/initiative_buttons.jsx");
-
-var _initiative_buttons2 = _interopRequireDefault(_initiative_buttons);
-
-var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var msp = function msp(state) {
-  return {
-    initiatives: state.entities.companies.initiatives,
-    companies: state.entities.companies.companies
-  };
-};
-
-var mdp = function mdp(dispatch) {
-  return {
-    fetchInitiatives: function fetchInitiatives() {
-      return dispatch((0, _company_actions.fetchInitiatives)());
-    }
-  };
-};
-
-exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(msp, mdp)(_initiative_buttons2.default));
-
-/***/ }),
-
 /***/ "./frontend/components/company_show/show_index.jsx":
 /*!*********************************************************!*\
   !*** ./frontend/components/company_show/show_index.jsx ***!
@@ -690,10 +543,6 @@ var _company_show_container2 = _interopRequireDefault(_company_show_container);
 var _company_index_container = __webpack_require__(/*! ./company_index_container */ "./frontend/components/company_show/company_index_container.js");
 
 var _company_index_container2 = _interopRequireDefault(_company_index_container);
-
-var _initiative_buttons_container = __webpack_require__(/*! ./initiatives/initiative_buttons_container */ "./frontend/components/company_show/initiatives/initiative_buttons_container.js");
-
-var _initiative_buttons_container2 = _interopRequireDefault(_initiative_buttons_container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -740,7 +589,9 @@ var ShowIndex = function (_Component) {
           'button',
           {
             key: key,
-            onClick: _this3.handleClick(), value: i.id },
+            className: 'initiative-button',
+            onClick: _this3.handleClick(),
+            value: i.id },
           i.category
         );
       });
@@ -761,24 +612,31 @@ var ShowIndex = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      // debugger
+      var violet = "#9400D3";
+      var inidigo = "#4B0082";
+      var blue = "#0000FF";
+      var green = "#00FF00";
+      var yellow = "#FFFF00";
+      var orange = "#FF7F00";
+      var red = "#FF0000";
+      var colors = ["#9400D3", "#4B0082", "#0000FF", "#00FF00", "#FFFF00", "#FF7F00", "#FF0000"];
+      $(".initiative-button").css("background-color", colors[Math.floor(Math.random() * 7)]);
       return _react2.default.createElement(
         'div',
         { className: 'show-index' },
         _react2.default.createElement(_company_index_container2.default, {
-          className: 'company-index',
           companies: this.props.companies, initFilter: this.state.initId }),
         _react2.default.createElement(_company_show_container2.default, {
-          className: 'company-show-item',
           company: this.props.company }),
         _react2.default.createElement(
           'section',
           { className: 'init-buttons-section' },
+          'Filter by Initiative Category',
           this.initiativeButtons(),
           _react2.default.createElement(
             'button',
             {
-              onClick: this.handleClick(), value: '0' },
+              onClick: this.handleClick(), className: 'initiative-button', value: '0' },
             'All'
           )
         )
@@ -1060,7 +918,6 @@ var selectChildCompanies = exports.selectChildCompanies = function selectChildCo
   var companyArr = Object.values(companies);
   if (Number(initFilter) === 0) {
     return companies;
-    debugger;
   }
   return companyArr.filter(function (company) {
     return company.initiative_id === Number(initFilter);

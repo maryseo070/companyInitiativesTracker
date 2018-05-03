@@ -143,7 +143,7 @@ company12 = Company.create(
   description: "RYOT was founded by the former humanitarian worker Bryn Mooser. Moved by the tragedies he witnessed around the world from Haiti to Nepal, in 2012 he formed a company to create a unique immersive experience around news, that meant putting the viewer at the heart of the news experience through mixed media.",
   website: "https://www.ryot.org/",
   job_postings: "https://www.oath.com/careers/job-openings?jobFamily=Engineering%20and%20Technology",
-  initiative_id: health.id
+  initiative_id: media.id
 )
 company13 = Company.create(
   name: "Bulb",

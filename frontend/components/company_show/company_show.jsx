@@ -5,8 +5,8 @@ import CompanyIndexContainer from './company_index_container';
 export const CompanyShowItem = (company) => {
   return (
     <ul className="company-show-ul">
-      <li className="company-show-li">{company.name}</li>
-      <li className="company-show-li">{company.location}</li>
+      <li className="company-show-li-name">{company.name}</li>
+      <li className="company-show-li-location">{company.location}</li>
       <li className="company-show-li">{company.description}</li>
       <a className="company-show-li"
         href={`${company.website}`}>
@@ -17,7 +17,7 @@ export const CompanyShowItem = (company) => {
         href={`${company.job_postings}`}>
         {company.name} Job Postings
       </a>
-      <li className="company-show-li">{company.initiative}</li>
+      <li className="company-show-li">Initiative Category: {company.initiative}</li>
     </ul>
   );
 };

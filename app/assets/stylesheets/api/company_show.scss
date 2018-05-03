@@ -1,0 +1,21 @@
+.company-show-ul{
+  background-color: green;
+  list-style-type: none;
+}
+
+.company-show-li-name{
+  font-weight: bold;
+  font-size: 30px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.company-show-li-location {
+  display: flex;
+  justify-content: center;
+}
+
+[class*="company-show-li"] {
+  padding: 7px;
+}
