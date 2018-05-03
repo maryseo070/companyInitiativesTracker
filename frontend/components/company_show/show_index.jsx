@@ -55,8 +55,10 @@ class ShowIndex extends Component {
           className="company-show-item"
           company={this.props.company}>
         </CompanyShowContainer>
-        <section>
+        <section className="init-buttons-section">
           {this.initiativeButtons()}
+          <button
+            onClick={this.handleClick()} value="0" >All</button>
         </section>
       </div>
     );

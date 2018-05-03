@@ -1,7 +1,8 @@
 export const selectChildCompanies = (companies, initFilter) => {
   let companyArr = Object.values(companies);
-  if (initFilter === 0) {
+  if (Number(initFilter) === 0) {
     return companies;
+    debugger
   }
   return companyArr.filter(
     (company) => company.initiative_id === Number(initFilter)

@@ -27,31 +27,10 @@ body {
   font-family: Courier;
 }
 
-.company-info-ol{
-  // background-color: purple;
-  padding: 10px;
-}
-
-.company-info-li{
-  text-transform: uppercase;
-  list-style-type: none;
-}
-
-.company-show-ul{
-  background-color: green;
-  list-style-type: none;
-}
 
 .show-index{
   display: grid;
   grid-template-columns: 25% 50% 25%;
-}
-
-.company-index-section{
-  height: 100vh;
-  overflow: scroll;
-  background-color: orange;
-	overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {

@@ -773,8 +773,14 @@ var ShowIndex = function (_Component) {
           company: this.props.company }),
         _react2.default.createElement(
           'section',
-          null,
-          this.initiativeButtons()
+          { className: 'init-buttons-section' },
+          this.initiativeButtons(),
+          _react2.default.createElement(
+            'button',
+            {
+              onClick: this.handleClick(), value: '0' },
+            'All'
+          )
         )
       );
     }
@@ -1052,8 +1058,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 var selectChildCompanies = exports.selectChildCompanies = function selectChildCompanies(companies, initFilter) {
   var companyArr = Object.values(companies);
-  if (initFilter === 0) {
+  if (Number(initFilter) === 0) {
     return companies;
+    debugger;
   }
   return companyArr.filter(function (company) {
     return company.initiative_id === Number(initFilter);

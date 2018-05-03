@@ -1,0 +1,19 @@
+.company-show-ul{
+  background-color: green;
+  list-style-type: none;
+}
+
+.company-info-ol{
+  // background-color: purple;
+  padding: 10px;
+}
+.company-info-li{
+  text-transform: uppercase;
+  list-style-type: none;
+}
+.company-index-section{
+  height: 100vh;
+  overflow: scroll;
+  background-color: orange;
+	overflow-x: hidden;
+}
