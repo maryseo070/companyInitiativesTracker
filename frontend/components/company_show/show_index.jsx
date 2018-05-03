@@ -55,6 +55,7 @@ class ShowIndex extends Component {
     let orange = "#FF7F00";
     let red = "#FF0000";
     let colors = ["#9400D3", "#4B0082", "#0000FF", "#00FF00", "#FFFF00", "#FF7F00", "#FF0000"]
+
     $(".initiative-button").css("background-color", colors[Math.floor(Math.random() * 7)]);
     return(
       <div className="show-index">
