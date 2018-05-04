@@ -84,7 +84,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.receiveCompany = exports.receiveCompanies = exports.fetchCompanies = exports.fetchCompany = exports.receiveInitiatives = exports.fetchInitiatives = exports.RECEIVE_INITIATIVES = exports.RECEIVE_COMPANY = exports.RECEIVE_COMPANIES = undefined;
+exports.receiveCompany = exports.receiveCompanies = exports.fetchCompanies = exports.fetchCompany = exports.receiveInitiatives = exports.fetchInitiatives = exports.createCompany = exports.RECEIVE_INITIATIVES = exports.RECEIVE_COMPANY = exports.RECEIVE_COMPANIES = undefined;
 
 var _company_api_util = __webpack_require__(/*! ../util/company_api_util.js */ "./frontend/util/company_api_util.js");
 
@@ -95,6 +95,14 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 var RECEIVE_COMPANIES = exports.RECEIVE_COMPANIES = "RECEIVE_COMPANIES";
 var RECEIVE_COMPANY = exports.RECEIVE_COMPANY = "RECEIVE_COMPANY";
 var RECEIVE_INITIATIVES = exports.RECEIVE_INITIATIVES = "RECEIVE_INITIATIVES";
+
+var createCompany = exports.createCompany = function createCompany(company) {
+  return function (dispatch) {
+    return CompanyApiUtil.createCompany(company).then(function (company) {
+      return dispatch(receiveCompany(company));
+    });
+  };
+};
 
 var fetchInitiatives = exports.fetchInitiatives = function fetchInitiatives() {
   return function (dispatch) {
@@ -615,11 +623,11 @@ var ShowIndex = function (_Component) {
       var violet = "#9400D3";
       var inidigo = "#4B0082";
       var blue = "#0000FF";
-      var green = "#00FF00";
-      var yellow = "#FFFF00";
+      var green = "#006400";
       var orange = "#FF7F00";
-      var red = "#FF0000";
-      var colors = ["#9400D3", "#4B0082", "#0000FF", "#00FF00", "#FFFF00", "#FF7F00", "#FF0000"];
+      var red = "	#B22222";
+      var colors = ["#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"];
+
       $(".initiative-button").css("background-color", colors[Math.floor(Math.random() * 7)]);
       return _react2.default.createElement(
         'div',
@@ -988,6 +996,15 @@ exports.default = configureStore;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var createCompany = exports.createCompany = function createCompany(company) {
+  return $.ajax({
+    method: "POST",
+    url: "/api/companies",
+    dataType: "json",
+    data: company
+  });
+};
+
 var fetchCompanies = exports.fetchCompanies = function fetchCompanies() {
   return $.ajax({
     method: "GET",

@@ -4,6 +4,13 @@ export const RECEIVE_COMPANIES = "RECEIVE_COMPANIES";
 export const RECEIVE_COMPANY = "RECEIVE_COMPANY";
 export const RECEIVE_INITIATIVES = "RECEIVE_INITIATIVES";
 
+
+export const createCompany = (company) => dispatch => {
+  return CompanyApiUtil.createCompany(company).then(
+    (company) => dispatch(receiveCompany(company))
+  );
+};
+
 export const fetchInitiatives = () => dispatch => {
   return CompanyApiUtil.fetchInitiatives().then(
     initiatives => dispatch(receiveInitiatives(initiatives))

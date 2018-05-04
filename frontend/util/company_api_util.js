@@ -1,3 +1,12 @@
+export const createCompany = company => {
+  return $.ajax({
+    method: "POST",
+    url: "/api/companies",
+    dataType: "json",
+    data: company
+  });
+};
+
 export const fetchCompanies = () => {
   return $.ajax({
     method: "GET",

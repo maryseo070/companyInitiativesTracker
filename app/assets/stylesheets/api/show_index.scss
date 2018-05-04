@@ -10,7 +10,7 @@
   padding: 10px;
   transition: all 0.5s;
   cursor: pointer;
-  margin: 5px;
+  margin: 8px;
 }
 
 .initiative-button:hover{
@@ -23,4 +23,9 @@
   font-weight: bold;
   // opacity: 0.5;
   color: black;
+}
+
+.init-buttons-section{
+  font-weight:bold;
+  font-size: 18px;
 }
