@@ -53,9 +53,13 @@ class ShowIndex extends Component {
     let green = "#006400";
     let orange = "#FF7F00";
     let red = "	#B22222";
-    let colors = ["#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"]
+    let colors = [
+      "#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"
+    ];
 
-    $(".initiative-button").css("background-color", colors[Math.floor(Math.random() * 7)]);
+    $(".initiative-button").css(
+      "background-color", colors[Math.floor(Math.random() * 7)]
+    );
     return(
       <div className="show-index">
         <CompanyIndexContainer
@@ -68,7 +72,9 @@ class ShowIndex extends Component {
           Filter by Initiative Category
           {this.initiativeButtons()}
           <button
-            onClick={this.handleClick()} className="initiative-button" value="0" >All</button>
+            onClick={this.handleClick()}
+            className="initiative-button"
+            value="0" >All</button>
         </section>
       </div>
     );

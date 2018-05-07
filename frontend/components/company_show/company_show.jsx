@@ -18,7 +18,8 @@ export const CompanyShowItem = (company) => {
         href={`${company.job_postings}`}>
         {company.name} Job Postings
       </a>
-      <li className="company-show-li">Initiative Category: {company.initiative}</li>
+      <li className="company-show-li">Initiative Category: {company.initiative}
+      </li>
     </ul>
   );
 };

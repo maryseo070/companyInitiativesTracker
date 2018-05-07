@@ -11,7 +11,11 @@ class CompanyForm extends Component{
     return (
       <form>
         <input type="text"></input>
-        <input type="submit" value="Submit Company" onClick={() => console.log("boop")}></input>
+        <input
+          type="submit"
+          value="Submit Company"
+          onClick={() => console.log("boop")}>
+        </input>
       </form>
     );
   }

@@ -171,10 +171,6 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
 
-var _company_show_container = __webpack_require__(/*! ./company_show/company_show_container.js */ "./frontend/components/company_show/company_show_container.js");
-
-var _company_show_container2 = _interopRequireDefault(_company_show_container);
-
 var _show_index_container = __webpack_require__(/*! ./company_show/show_index_container */ "./frontend/components/company_show/show_index_container.js");
 
 var _show_index_container2 = _interopRequireDefault(_show_index_container);
@@ -185,13 +181,12 @@ var App = function App() {
   return _react2.default.createElement(
     'div',
     null,
-    _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/companies/:companyId', component: _show_index_container2.default })
+    _react2.default.createElement(_reactRouter.Route, {
+      exact: true, path: '/companies/:companyId',
+      component: _show_index_container2.default })
   );
 };
-
-// <Route exact path="/companies" component={CompanyIndexContainer} />
-
-// import{MainPage} from './main_page/main_page';
+// import CompanyShowContainer from './company_show/company_show_container.js';
 exports.default = App;
 
 /***/ }),
@@ -242,7 +237,10 @@ var CompanyForm = function (_Component) {
         'form',
         null,
         _react2.default.createElement('input', { type: 'text' }),
-        _react2.default.createElement('input', { type: 'submit', value: 'Submit Company', onClick: function onClick() {
+        _react2.default.createElement('input', {
+          type: 'submit',
+          value: 'Submit Company',
+          onClick: function onClick() {
             return console.log("boop");
           } })
       );
@@ -302,7 +300,8 @@ var CompanyInfo = exports.CompanyInfo = function CompanyInfo(company) {
     { className: 'company-info-ol' },
     _react2.default.createElement(
       _reactRouterDom.Link,
-      { to: '/companies/' + company.id, className: 'company-info-li' },
+      { to: '/companies/' + company.id,
+        className: 'company-info-li' },
       company.name
     ),
     _react2.default.createElement(
@@ -313,7 +312,8 @@ var CompanyInfo = exports.CompanyInfo = function CompanyInfo(company) {
   );
 };
 
-// <a href={`/companies/${company.id}`} className="company-info-li">{company.name}</a>
+// <a href={`/companies/${company.id}`}
+// className="company-info-li">{company.name}</a>
 var FormLink = exports.FormLink = function FormLink() {
   return _react2.default.createElement(
     'div',
@@ -710,7 +710,9 @@ var ShowIndex = function (_Component) {
           _react2.default.createElement(
             'button',
             {
-              onClick: this.handleClick(), className: 'initiative-button', value: '0' },
+              onClick: this.handleClick(),
+              className: 'initiative-button',
+              value: '0' },
             'All'
           )
         )

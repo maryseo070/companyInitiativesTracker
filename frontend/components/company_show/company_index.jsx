@@ -7,13 +7,15 @@ export const CompanyInfo = (company) => {
 
   return (
     <ol className="company-info-ol">
-      <Link to={`/companies/${company.id}`} className="company-info-li">{company.name}</Link>
+      <Link to={`/companies/${company.id}`}
+        className="company-info-li">{company.name}</Link>
       <li className="company-info-li">{company.location}</li>
     </ol>
   );
 };
 
-// <a href={`/companies/${company.id}`} className="company-info-li">{company.name}</a>
+// <a href={`/companies/${company.id}`}
+// className="company-info-li">{company.name}</a>
 export const FormLink = () => {
   return (
     <div>
@@ -32,7 +34,9 @@ class CompanyIndex extends Component {
     this.props.fetchCompanies();
   }
   render () {
-    let companies = selectChildCompanies(this.props.companies, this.props.initFilter);
+    let companies = selectChildCompanies(
+      this.props.companies, this.props.initFilter
+    );
     let indexforKey = 1;
     companies = Object.values(companies);
     companies = companies.map(company => (
