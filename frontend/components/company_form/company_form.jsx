@@ -9,8 +9,11 @@ class CompanyForm extends Component{
 
   render() {
     return (
-      "boop"
-    )
+      <form>
+        <input type="text"></input>
+        <input type="submit" value="Submit Company" onClick={() => console.log("boop")}></input>
+      </form>
+    );
   }
 }
 

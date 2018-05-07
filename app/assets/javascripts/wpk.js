@@ -196,6 +196,66 @@ exports.default = App;
 
 /***/ }),
 
+/***/ "./frontend/components/company_form/company_form.jsx":
+/*!***********************************************************!*\
+  !*** ./frontend/components/company_form/company_form.jsx ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CompanyForm = function (_Component) {
+  _inherits(CompanyForm, _Component);
+
+  function CompanyForm(props) {
+    _classCallCheck(this, CompanyForm);
+
+    return _possibleConstructorReturn(this, (CompanyForm.__proto__ || Object.getPrototypeOf(CompanyForm)).call(this, props));
+  }
+
+  _createClass(CompanyForm, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'form',
+        null,
+        _react2.default.createElement('input', { type: 'text' }),
+        _react2.default.createElement('input', { type: 'submit', value: 'Submit Company', onClick: function onClick() {
+            return console.log("boop");
+          } })
+      );
+    }
+  }]);
+
+  return CompanyForm;
+}(_react.Component);
+
+exports.default = CompanyForm;
+
+/***/ }),
+
 /***/ "./frontend/components/company_show/company_index.jsx":
 /*!************************************************************!*\
   !*** ./frontend/components/company_show/company_index.jsx ***!
@@ -370,8 +430,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.CompanyShowItem = undefined;
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
@@ -386,6 +444,10 @@ var _company_index_container = __webpack_require__(/*! ./company_index_container
 
 var _company_index_container2 = _interopRequireDefault(_company_index_container);
 
+var _company_form = __webpack_require__(/*! ./../company_form/company_form */ "./frontend/components/company_form/company_form.jsx");
+
+var _company_form2 = _interopRequireDefault(_company_form);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -397,7 +459,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var CompanyShowItem = exports.CompanyShowItem = function CompanyShowItem(company) {
   return _react2.default.createElement(
     'ul',
-    { className: 'company-show-ul' },
+    { className: 'company-show-section' },
     _react2.default.createElement(
       'li',
       { className: 'company-show-li-name' },
@@ -456,8 +518,12 @@ var CompanyShow = function (_Component) {
     value: function render() {
       var company = this.props.company;
 
-      return _react2.default.createElement(CompanyShowItem, _extends({ className: 'company-show-item'
-      }, company));
+      return _react2.default.createElement(
+        'section',
+        { className: 'company-show-section' },
+        _react2.default.createElement(CompanyShowItem, company),
+        _react2.default.createElement(_company_form2.default, null)
+      );
     }
   }]);
 

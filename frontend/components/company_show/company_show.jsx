@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import CompanyIndexContainer from './company_index_container';
+import CompanyForm from './../company_form/company_form';
 
 export const CompanyShowItem = (company) => {
   return (
-    <ul className="company-show-ul">
+    <ul className="company-show-section">
       <li className="company-show-li-name">{company.name}</li>
       <li className="company-show-li-location">{company.location}</li>
       <li className="company-show-li">{company.description}</li>
@@ -36,9 +37,13 @@ class CompanyShow extends Component {
     let company = this.props.company;
 
     return(
-      <CompanyShowItem className="company-show-item"
-        {...company}>
-      </CompanyShowItem>
+      <section className="company-show-section">
+        <CompanyShowItem
+          {...company}>
+        </CompanyShowItem>
+        <CompanyForm >
+        </CompanyForm>
+      </section>
     );
   }
 }
