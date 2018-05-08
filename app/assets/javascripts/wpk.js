@@ -219,6 +219,8 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -233,14 +235,50 @@ var CompanyForm = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (CompanyForm.__proto__ || Object.getPrototypeOf(CompanyForm)).call(this, props));
 
+    _this.state = {
+      name: "",
+      location: "",
+      description: "",
+      initiative_id: null,
+      website: "",
+      job_postings: ""
+
+    };
     _this.handleSubmit = _this.handleSubmit.bind(_this);
     _this.initiativesDropdown = _this.initiativesDropdown.bind(_this);
+    _this.updateField = _this.updateField.bind(_this);
+    _this.updateInit = _this.updateInit.bind(_this);
     return _this;
   }
 
   _createClass(CompanyForm, [{
     key: 'handleSubmit',
-    value: function handleSubmit() {}
+    value: function handleSubmit(e) {
+      var _this2 = this;
+
+      e.preventDefault();
+      this.props.createCompany(this.state).then(function () {
+        return _this2.props.history.push('/companies/1');
+      });
+    }
+  }, {
+    key: 'updateField',
+    value: function updateField(field) {
+      var _this3 = this;
+
+      return function (e) {
+        _this3.setState(_defineProperty({}, field, e.target.value));
+      };
+    }
+  }, {
+    key: 'updateInit',
+    value: function updateInit() {
+      var _this4 = this;
+
+      return function (e) {
+        _this4.setState({ "initiative_id": e.target.idNum });
+      };
+    }
   }, {
     key: 'initiativesDropdown',
     value: function initiativesDropdown() {
@@ -248,7 +286,9 @@ var CompanyForm = function (_Component) {
       return inits.map(function (init) {
         return _react2.default.createElement(
           'option',
-          { value: init.category },
+          {
+            value: init.category,
+            idNum: init.id },
           init.category
         );
       });
@@ -259,11 +299,15 @@ var CompanyForm = function (_Component) {
       return _react2.default.createElement(
         'form',
         { onSubmit: this.handleSubmit },
-        _react2.default.createElement('input', { type: 'text', placeholder: 'Company Name' }),
-        _react2.default.createElement('input', { type: 'text', placeholder: 'Location(City and State)' }),
+        _react2.default.createElement('input', { type: 'text',
+          placeholder: 'Company Name',
+          onChange: this.updateField("name") }),
+        _react2.default.createElement('input', { type: 'text',
+          placeholder: 'Location(City and State)',
+          onChange: this.updateField("location") }),
         _react2.default.createElement(
           'select',
-          null,
+          { onChange: this.updateInit() },
           this.initiativesDropdown()
         ),
         _react2.default.createElement(
@@ -271,15 +315,17 @@ var CompanyForm = function (_Component) {
           null,
           'Description of company/initiative'
         ),
-        _react2.default.createElement('textarea', null),
-        _react2.default.createElement('input', { type: 'text', placeholder: 'Link to company website' }),
-        _react2.default.createElement('input', { type: 'text', placeholder: 'Link to company job postings' }),
+        _react2.default.createElement('textarea', { onChange: this.updateField("description") }),
+        _react2.default.createElement('input', { type: 'text',
+          placeholder: 'Link to company website',
+          onChange: this.updateField("website") }),
+        _react2.default.createElement('input', {
+          type: 'text',
+          placeholder: 'Link to company job postings',
+          onChange: this.updateField("job_postings") }),
         _react2.default.createElement('input', {
           type: 'submit',
-          value: 'Submit Company',
-          onClick: function onClick() {
-            return console.log("boop");
-          } })
+          value: 'Submit Company' })
       );
     }
   }]);
@@ -1156,6 +1202,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var createCompany = exports.createCompany = function createCompany(company) {
+  debugger;
   return $.ajax({
     method: "POST",
     url: "/api/companies",
