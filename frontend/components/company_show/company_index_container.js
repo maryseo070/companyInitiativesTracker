@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom';
 import CompanyIndex from './company_index.jsx';
 
 const msp = (state) => {
-  return{
+  return {
     companies: state.entities.companies.companies
   };
 };

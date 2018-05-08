@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import CompanyShowContainer from './company_show_container';
 import CompanyIndexContainer from './company_index_container';
 
-
-
 class ShowIndex extends Component {
   constructor(props) {
     super(props);
@@ -47,12 +45,12 @@ class ShowIndex extends Component {
 
 
   render() {
-    let violet = "#9400D3";
-    let inidigo = "#4B0082";
-    let blue = "#0000FF";
-    let green = "#006400";
-    let orange = "#FF7F00";
-    let red = "	#B22222";
+    // let violet = "#9400D3";
+    // let inidigo = "#4B0082";
+    // let blue = "#0000FF";
+    // let green = "#006400";
+    // let orange = "#FF7F00";
+    // let red = "	#B22222";
     let colors = [
       "#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"
     ];
@@ -66,15 +64,17 @@ class ShowIndex extends Component {
           companies={this.props.companies} initFilter={this.state.initId}>
         </CompanyIndexContainer>
         <CompanyShowContainer
-          company={this.props.company}>
+          company={this.props.company}
+          initiatives={this.props.initiatives}>
         </CompanyShowContainer>
         <section className="init-buttons-section">
           Filter by Initiative Category
           {this.initiativeButtons()}
-          <button
-            onClick={this.handleClick()}
-            className="initiative-button"
-            value="0" >All</button>
+            <button
+              onClick={this.handleClick()}
+              className="initiative-button"
+              value="0" >All</button>
+
         </section>
       </div>
     );

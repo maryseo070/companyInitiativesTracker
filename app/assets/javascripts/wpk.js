@@ -213,6 +213,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -227,16 +231,49 @@ var CompanyForm = function (_Component) {
   function CompanyForm(props) {
     _classCallCheck(this, CompanyForm);
 
-    return _possibleConstructorReturn(this, (CompanyForm.__proto__ || Object.getPrototypeOf(CompanyForm)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (CompanyForm.__proto__ || Object.getPrototypeOf(CompanyForm)).call(this, props));
+
+    _this.handleSubmit = _this.handleSubmit.bind(_this);
+    _this.initiativesDropdown = _this.initiativesDropdown.bind(_this);
+    return _this;
   }
 
   _createClass(CompanyForm, [{
+    key: 'handleSubmit',
+    value: function handleSubmit() {}
+  }, {
+    key: 'initiativesDropdown',
+    value: function initiativesDropdown() {
+      var inits = Object.values(this.props.initiatives);
+      return inits.map(function (init) {
+        return _react2.default.createElement(
+          'option',
+          { value: init.category },
+          init.category
+        );
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'form',
-        null,
-        _react2.default.createElement('input', { type: 'text' }),
+        { onSubmit: this.handleSubmit },
+        _react2.default.createElement('input', { type: 'text', placeholder: 'Company Name' }),
+        _react2.default.createElement('input', { type: 'text', placeholder: 'Location(City and State)' }),
+        _react2.default.createElement(
+          'select',
+          null,
+          this.initiativesDropdown()
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          'Description of company/initiative'
+        ),
+        _react2.default.createElement('textarea', null),
+        _react2.default.createElement('input', { type: 'text', placeholder: 'Link to company website' }),
+        _react2.default.createElement('input', { type: 'text', placeholder: 'Link to company job postings' }),
         _react2.default.createElement('input', {
           type: 'submit',
           value: 'Submit Company',
@@ -250,7 +287,60 @@ var CompanyForm = function (_Component) {
   return CompanyForm;
 }(_react.Component);
 
+CompanyForm.propType = {
+  initiatives: _propTypes2.default.object
+};
+
+CompanyForm.defaultProps = {
+  initiatives: {}
+};
+
 exports.default = CompanyForm;
+
+/***/ }),
+
+/***/ "./frontend/components/company_form/company_form_container.js":
+/*!********************************************************************!*\
+  !*** ./frontend/components/company_form/company_form_container.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _company_actions = __webpack_require__(/*! ../../actions/company_actions */ "./frontend/actions/company_actions.js");
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _company_form = __webpack_require__(/*! ./company_form */ "./frontend/components/company_form/company_form.jsx");
+
+var _company_form2 = _interopRequireDefault(_company_form);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var msp = function msp(state) {
+  return {
+    initiatives: state.entities.companies.initiatives
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {
+    createCompany: function createCompany(company) {
+      return dispatch((0, _company_actions.createCompany)(company));
+    },
+    fetchInitiatives: function fetchInitiatives() {
+      return dispatch((0, _company_actions.fetchInitiatives)());
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(msp, mdp)(_company_form2.default);
 
 /***/ }),
 
@@ -444,9 +534,9 @@ var _company_index_container = __webpack_require__(/*! ./company_index_container
 
 var _company_index_container2 = _interopRequireDefault(_company_index_container);
 
-var _company_form = __webpack_require__(/*! ./../company_form/company_form */ "./frontend/components/company_form/company_form.jsx");
+var _company_form_container = __webpack_require__(/*! ./../company_form/company_form_container */ "./frontend/components/company_form/company_form_container.js");
 
-var _company_form2 = _interopRequireDefault(_company_form);
+var _company_form_container2 = _interopRequireDefault(_company_form_container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -522,7 +612,7 @@ var CompanyShow = function (_Component) {
         'section',
         { className: 'company-show-section' },
         _react2.default.createElement(CompanyShowItem, company),
-        _react2.default.createElement(_company_form2.default, null)
+        _react2.default.createElement(_company_form_container2.default, { intiatives: this.props.initiatives })
       );
     }
   }]);
@@ -686,12 +776,12 @@ var ShowIndex = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var violet = "#9400D3";
-      var inidigo = "#4B0082";
-      var blue = "#0000FF";
-      var green = "#006400";
-      var orange = "#FF7F00";
-      var red = "	#B22222";
+      // let violet = "#9400D3";
+      // let inidigo = "#4B0082";
+      // let blue = "#0000FF";
+      // let green = "#006400";
+      // let orange = "#FF7F00";
+      // let red = "	#B22222";
       var colors = ["#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"];
 
       $(".initiative-button").css("background-color", colors[Math.floor(Math.random() * 7)]);
@@ -701,7 +791,8 @@ var ShowIndex = function (_Component) {
         _react2.default.createElement(_company_index_container2.default, {
           companies: this.props.companies, initFilter: this.state.initId }),
         _react2.default.createElement(_company_show_container2.default, {
-          company: this.props.company }),
+          company: this.props.company,
+          initiatives: this.props.initiatives }),
         _react2.default.createElement(
           'section',
           { className: 'init-buttons-section' },

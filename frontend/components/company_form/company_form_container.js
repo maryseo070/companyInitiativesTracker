@@ -1,10 +1,21 @@
-import React from 'react';
-import {createCompany} from '../../actions/company_actions';
+import {
+  createCompany,
+  fetchInitiatives
+} from '../../actions/company_actions';
 import {connect} from 'react-redux';
-import CompanyForm from './comany_form';
+import CompanyForm from './company_form';
 
 const msp = (state) => {
   return {
-    company: "idk what to put here yet"
+    initiatives: state.entities.companies.initiatives
   };
 };
+
+const mdp = dispatch => {
+  return {
+    createCompany: (company) => dispatch(createCompany(company)),
+    fetchInitiatives: () => dispatch(fetchInitiatives())
+  };
+};
+
+export default connect(msp, mdp)(CompanyForm);

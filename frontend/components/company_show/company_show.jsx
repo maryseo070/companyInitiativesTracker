@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import CompanyIndexContainer from './company_index_container';
-import CompanyForm from './../company_form/company_form';
+import CompanyForm from './../company_form/company_form_container';
 
 export const CompanyShowItem = (company) => {
   return (
@@ -42,7 +42,7 @@ class CompanyShow extends Component {
         <CompanyShowItem
           {...company}>
         </CompanyShowItem>
-        <CompanyForm >
+        <CompanyForm intiatives={this.props.initiatives}>
         </CompanyForm>
       </section>
     );
