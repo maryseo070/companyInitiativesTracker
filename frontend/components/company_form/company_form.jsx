@@ -10,20 +10,24 @@ class CompanyForm extends Component{
       name: "",
       location: "",
       description: "",
-      initiative_id: null,
+      initiative_id: "",
       website: "",
       job_postings: ""
-
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.initiativesDropdown = this.initiativesDropdown.bind(this);
     this.updateField = this.updateField.bind(this);
     this.updateInit = this.updateInit.bind(this);
+    this.updateName = this.updateName.bind(this);
   }
+  // componentDidMount() {
+  //   console.log(this.state)
+  // }
 
   handleSubmit(e){
     e.preventDefault();
-    this.props.createCompany(this.state).then(
+    let company = Object.assign({}, this.state);
+    this.props.createCompany(company).then(
       () => this.props.history.push(`/companies/1`)
     );
   }
@@ -34,30 +38,37 @@ class CompanyForm extends Component{
     };
   }
 
+  updateName(e){
+    this.setState({name: e.currentTarget.value});
+  }
   updateInit() {
     return(e) => {
-      this.setState({"initiative_id": e.target.idNum});
+      this.setState({"initiative_id": e.target.value});
     };
   }
 
   initiativesDropdown() {
     let inits = Object.values(this.props.initiatives);
-    return inits.map( (init) => (
+    return inits.map( (init, i) => (
         <option
-          value={init.category}
-          idNum={init.id}>
+          key={Math.random() * 5000}
+          value={init.id}>
           {init.category}</option>
     ));
   }
 
   render() {
+    let i = 10;
     return (
       <form onSubmit={this.handleSubmit}>
         <input type="text"
+          key={i++}
           placeholder="Company Name"
-          onChange={this.updateField("name")}/>
+          value={this.state.name}
+          onChange={this.updateName}/>
         <input type="text"
           placeholder="Location(City and State)"
+          value={this.state.location}
           onChange={this.updateField("location")}/>
         <select onChange={this.updateInit()}>
           {this.initiativesDropdown()}

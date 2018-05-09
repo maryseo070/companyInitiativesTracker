@@ -239,17 +239,20 @@ var CompanyForm = function (_Component) {
       name: "",
       location: "",
       description: "",
-      initiative_id: null,
+      initiative_id: "",
       website: "",
       job_postings: ""
-
     };
     _this.handleSubmit = _this.handleSubmit.bind(_this);
     _this.initiativesDropdown = _this.initiativesDropdown.bind(_this);
     _this.updateField = _this.updateField.bind(_this);
     _this.updateInit = _this.updateInit.bind(_this);
+    _this.updateName = _this.updateName.bind(_this);
     return _this;
   }
+  // componentDidMount() {
+  //   console.log(this.state)
+  // }
 
   _createClass(CompanyForm, [{
     key: 'handleSubmit',
@@ -257,7 +260,8 @@ var CompanyForm = function (_Component) {
       var _this2 = this;
 
       e.preventDefault();
-      this.props.createCompany(this.state).then(function () {
+      var company = Object.assign({}, this.state);
+      this.props.createCompany(company).then(function () {
         return _this2.props.history.push('/companies/1');
       });
     }
@@ -271,24 +275,29 @@ var CompanyForm = function (_Component) {
       };
     }
   }, {
+    key: 'updateName',
+    value: function updateName(e) {
+      this.setState({ name: e.currentTarget.value });
+    }
+  }, {
     key: 'updateInit',
     value: function updateInit() {
       var _this4 = this;
 
       return function (e) {
-        _this4.setState({ "initiative_id": e.target.idNum });
+        _this4.setState({ "initiative_id": e.target.value });
       };
     }
   }, {
     key: 'initiativesDropdown',
     value: function initiativesDropdown() {
       var inits = Object.values(this.props.initiatives);
-      return inits.map(function (init) {
+      return inits.map(function (init, i) {
         return _react2.default.createElement(
           'option',
           {
-            value: init.category,
-            idNum: init.id },
+            key: Math.random() * 5000,
+            value: init.id },
           init.category
         );
       });
@@ -296,14 +305,18 @@ var CompanyForm = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var i = 10;
       return _react2.default.createElement(
         'form',
         { onSubmit: this.handleSubmit },
         _react2.default.createElement('input', { type: 'text',
+          key: i++,
           placeholder: 'Company Name',
-          onChange: this.updateField("name") }),
+          value: this.state.name,
+          onChange: this.updateName }),
         _react2.default.createElement('input', { type: 'text',
           placeholder: 'Location(City and State)',
+          value: this.state.location,
           onChange: this.updateField("location") }),
         _react2.default.createElement(
           'select',
