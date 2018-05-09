@@ -305,7 +305,6 @@ var CompanyForm = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var i = 10;
       return _react2.default.createElement(
         'form',
         { onSubmit: this.handleSubmit },

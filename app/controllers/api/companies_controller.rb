@@ -12,11 +12,10 @@ class Api::CompaniesController < ApplicationController
   def create
     debugger
     @company = Company.new(company_params)
-    @company.initiative_id = @company.initiative.id
     debugger
     if @company.save
       debugger
-      render template: "api/companies/index.json.jbuilder"
+      render template: "api/companies/show.json.jbuilder"
     else
       debugger
       render json: ["ERRORRRRRRRR"], status: 403
@@ -26,6 +25,9 @@ class Api::CompaniesController < ApplicationController
 
   private
   def company_params
-    params.require(:company).permit(:name, :location, :description, :website, :job_postings)
+    params
+    .require(:company)
+    .permit(:name, :location, :description, :website, :job_postings)
   end
+
 end
