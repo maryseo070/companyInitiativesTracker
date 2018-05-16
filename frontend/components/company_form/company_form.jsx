@@ -58,34 +58,37 @@ class CompanyForm extends Component{
   }
 
   render() {
-    let i = 1
+    let i = 1;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input type="text"
-          key={i++}
-          placeholder="Company Name"
-          value={this.state.name}
-          onChange={this.updateName}/>
-        <input type="text"
-          placeholder="Location(City and State)"
-          value={this.state.location}
-          onChange={this.updateField("location")}/>
-        <select onChange={this.updateInit()}>
-          {this.initiativesDropdown()}
-        </select>
-        <div>Description of company/initiative</div>
-        <textarea onChange={this.updateField("description")}/>
-        <input type="text"
-          placeholder="Link to company website"
-          onChange={this.updateField("website")}/>
-        <input
-          type="text"
-          placeholder="Link to company job postings"
-          onChange={this.updateField("job_postings")}/>
-        <input
-          type="submit"
-          value="Submit Company"/>
-      </form>
+      <section className="company-form-holder">
+        Want to add a company to the initiative list? Submit form!
+        <form onSubmit={this.handleSubmit}>
+          <input type="text"
+            key={i++}
+            placeholder="Company Name"
+            value={this.state.name}
+            onChange={this.updateName}/>
+          <input type="text"
+            placeholder="Location(City and State)"
+            value={this.state.location}
+            onChange={this.updateField("location")}/>
+          <select onChange={this.updateInit()}>
+            {this.initiativesDropdown()}
+          </select>
+          <div>Description of company/initiative</div>
+          <textarea onChange={this.updateField("description")}/>
+          <input type="text"
+            placeholder="Link to company website"
+            onChange={this.updateField("website")}/>
+          <input
+            type="text"
+            placeholder="Link to company job postings"
+            onChange={this.updateField("job_postings")}/>
+          <input
+            type="submit"
+            value="Submit Company"/>
+        </form>
+      </section>
     );
   }
 }

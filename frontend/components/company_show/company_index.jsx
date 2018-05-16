@@ -4,13 +4,7 @@ import { Link } from 'react-router-dom';
 import { selectChildCompanies } from '../../reducers/selectors.js';
 
 export const CompanyInfo = (company) => {
-  let colores = [
-    "#800040", "#6239bd", "#9370DB", "#BA55D3", "#800080"
-  ];
-  // let companyItems = document.getElementsByClassName("company-info-ol");
-  $(".company-info-ol").css(
-    "background-color", colores[Math.floor(Math.random() * 5)]
-  )
+
   return (
     <ol className="company-info-ol">
       <section className="company-info-holder">
@@ -40,6 +34,13 @@ class CompanyIndex extends Component {
     this.props.fetchCompanies();
   }
   render () {
+    let colores = [
+      "#800040", "#6239bd", "#9370DB", "#BA55D3", "#800080"
+    ];
+    // let companyItems = document.getElementsByClassName("company-info-ol");
+    $(".company-info-ol").css(
+      "background-color", colores[Math.floor(Math.random() * 5)]
+    ) 
     let companies = selectChildCompanies(
       this.props.companies, this.props.initFilter
     );

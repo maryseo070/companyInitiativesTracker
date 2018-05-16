@@ -42,6 +42,7 @@ class CompanyShow extends Component {
         <CompanyShowItem
           {...company}>
         </CompanyShowItem>
+
         <CompanyForm intiatives={this.props.initiatives}>
         </CompanyForm>
       </section>

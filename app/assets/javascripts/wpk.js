@@ -307,38 +307,43 @@ var CompanyForm = function (_Component) {
     value: function render() {
       var i = 1;
       return _react2.default.createElement(
-        'form',
-        { onSubmit: this.handleSubmit },
-        _react2.default.createElement('input', { type: 'text',
-          key: i++,
-          placeholder: 'Company Name',
-          value: this.state.name,
-          onChange: this.updateName }),
-        _react2.default.createElement('input', { type: 'text',
-          placeholder: 'Location(City and State)',
-          value: this.state.location,
-          onChange: this.updateField("location") }),
+        'section',
+        { className: 'company-form-holder' },
+        'Want to add a company to the initiative list? Submit form!',
         _react2.default.createElement(
-          'select',
-          { onChange: this.updateInit() },
-          this.initiativesDropdown()
-        ),
-        _react2.default.createElement(
-          'div',
-          null,
-          'Description of company/initiative'
-        ),
-        _react2.default.createElement('textarea', { onChange: this.updateField("description") }),
-        _react2.default.createElement('input', { type: 'text',
-          placeholder: 'Link to company website',
-          onChange: this.updateField("website") }),
-        _react2.default.createElement('input', {
-          type: 'text',
-          placeholder: 'Link to company job postings',
-          onChange: this.updateField("job_postings") }),
-        _react2.default.createElement('input', {
-          type: 'submit',
-          value: 'Submit Company' })
+          'form',
+          { onSubmit: this.handleSubmit },
+          _react2.default.createElement('input', { type: 'text',
+            key: i++,
+            placeholder: 'Company Name',
+            value: this.state.name,
+            onChange: this.updateName }),
+          _react2.default.createElement('input', { type: 'text',
+            placeholder: 'Location(City and State)',
+            value: this.state.location,
+            onChange: this.updateField("location") }),
+          _react2.default.createElement(
+            'select',
+            { onChange: this.updateInit() },
+            this.initiativesDropdown()
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            'Description of company/initiative'
+          ),
+          _react2.default.createElement('textarea', { onChange: this.updateField("description") }),
+          _react2.default.createElement('input', { type: 'text',
+            placeholder: 'Link to company website',
+            onChange: this.updateField("website") }),
+          _react2.default.createElement('input', {
+            type: 'text',
+            placeholder: 'Link to company job postings',
+            onChange: this.updateField("job_postings") }),
+          _react2.default.createElement('input', {
+            type: 'submit',
+            value: 'Submit Company' })
+        )
       );
     }
   }]);
@@ -443,9 +448,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var CompanyInfo = exports.CompanyInfo = function CompanyInfo(company) {
-  var colores = ["#800040", "#6239bd", "#9370DB", "#BA55D3", "#800080"];
-  // let companyItems = document.getElementsByClassName("company-info-ol");
-  $(".company-info-ol").css("background-color", colores[Math.floor(Math.random() * 5)]);
+
   return _react2.default.createElement(
     'ol',
     { className: 'company-info-ol' },
@@ -492,6 +495,9 @@ var CompanyIndex = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var colores = ["#800040", "#6239bd", "#9370DB", "#BA55D3", "#800080"];
+      // let companyItems = document.getElementsByClassName("company-info-ol");
+      $(".company-info-ol").css("background-color", colores[Math.floor(Math.random() * 5)]);
       var companies = (0, _selectors.selectChildCompanies)(this.props.companies, this.props.initFilter);
       var indexforKey = 1;
       companies = Object.values(companies);
