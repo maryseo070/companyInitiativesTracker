@@ -416,7 +416,7 @@ exports.default = (0, _reactRedux.connect)(msp, mdp)(_company_form2.default);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.FormLink = exports.CompanyInfo = undefined;
+exports.CompanyInfo = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -443,34 +443,37 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var CompanyInfo = exports.CompanyInfo = function CompanyInfo(company) {
-
+  var colores = ["#800040", "#6239bd", "#9370DB", "#BA55D3", "#800080"];
+  // let companyItems = document.getElementsByClassName("company-info-ol");
+  $(".company-info-ol").css("background-color", colores[Math.floor(Math.random() * 5)]);
   return _react2.default.createElement(
     'ol',
     { className: 'company-info-ol' },
     _react2.default.createElement(
-      _reactRouterDom.Link,
-      { to: '/companies/' + company.id,
-        className: 'company-info-li' },
-      company.name
-    ),
-    _react2.default.createElement(
-      'li',
-      { className: 'company-info-li' },
-      company.location
+      'section',
+      { className: 'company-info-holder' },
+      _react2.default.createElement(
+        _reactRouterDom.Link,
+        { to: '/companies/' + company.id,
+          className: 'company-info-li' },
+        company.name,
+        _react2.default.createElement(
+          'li',
+          null,
+          company.location
+        )
+      )
     )
   );
 };
 
-// <a href={`/companies/${company.id}`}
-// className="company-info-li">{company.name}</a>
-var FormLink = exports.FormLink = function FormLink() {
-  return _react2.default.createElement(
-    'div',
-    null,
-    'insert link to form for company after you create a component for that :)'
-  );
-};
-// <Link to={`/`}>Add a company to the database!</Link>
+// let col = [
+//   "#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"
+// ];
+//
+// $(".company-info-li").css(
+//   "background-color", col[Math.floor(Math.random() * 6)]
+// );
 
 var CompanyIndex = function (_Component) {
   _inherits(CompanyIndex, _Component);
@@ -499,8 +502,7 @@ var CompanyIndex = function (_Component) {
       return _react2.default.createElement(
         'section',
         { className: 'company-index-section' },
-        companies,
-        _react2.default.createElement(FormLink, null)
+        companies
       );
     }
   }]);
@@ -807,6 +809,10 @@ var ShowIndex = function (_Component) {
 
       var initiatives = this.props.initiatives;
       initiatives = Object.values(initiatives);
+      var colors = ["#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"];
+
+      $(".initiative-button").css("background-color", colors[Math.floor(Math.random() * 6)]);
+
       return initiatives.map(function (i, key) {
         return _react2.default.createElement(
           'button',
@@ -835,15 +841,11 @@ var ShowIndex = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      // let violet = "#9400D3";
-      // let inidigo = "#4B0082";
-      // let blue = "#0000FF";
-      // let green = "#006400";
-      // let orange = "#FF7F00";
-      // let red = "	#B22222";
+
       var colors = ["#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"];
 
-      $(".initiative-button").css("background-color", colors[Math.floor(Math.random() * 7)]);
+      $(".initiative-button").css("background-color", colors[Math.floor(Math.random() * 6)]);
+
       return _react2.default.createElement(
         'div',
         { className: 'show-index' },
@@ -1219,7 +1221,7 @@ var createCompany = exports.createCompany = function createCompany(company) {
     method: "POST",
     url: "/api/companies",
     dataType: "json",
-    data: company
+    data: { company: company }
   });
 };
 

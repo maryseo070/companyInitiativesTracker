@@ -3,7 +3,7 @@ export const createCompany = company => {
     method: "POST",
     url: "/api/companies",
     dataType: "json",
-    data: company
+    data: {company: company}
   });
 };
 

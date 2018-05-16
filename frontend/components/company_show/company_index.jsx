@@ -4,26 +4,32 @@ import { Link } from 'react-router-dom';
 import { selectChildCompanies } from '../../reducers/selectors.js';
 
 export const CompanyInfo = (company) => {
-
+  let colores = [
+    "#800040", "#6239bd", "#9370DB", "#BA55D3", "#800080"
+  ];
+  // let companyItems = document.getElementsByClassName("company-info-ol");
+  $(".company-info-ol").css(
+    "background-color", colores[Math.floor(Math.random() * 5)]
+  )
   return (
     <ol className="company-info-ol">
-      <Link to={`/companies/${company.id}`}
-        className="company-info-li">{company.name}</Link>
-      <li className="company-info-li">{company.location}</li>
+      <section className="company-info-holder">
+        <Link to={`/companies/${company.id}`}
+          className="company-info-li">{company.name}
+          <li>{company.location}</li>
+        </Link>
+      </section>
     </ol>
   );
 };
 
-// <a href={`/companies/${company.id}`}
-// className="company-info-li">{company.name}</a>
-export const FormLink = () => {
-  return (
-    <div>
-      insert link to form for company after you create a component for that :)
-    </div>
-  );
-};
-// <Link to={`/`}>Add a company to the database!</Link>
+// let col = [
+//   "#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"
+// ];
+//
+// $(".company-info-li").css(
+//   "background-color", col[Math.floor(Math.random() * 6)]
+// );
 
 class CompanyIndex extends Component {
   constructor(props){
@@ -47,7 +53,6 @@ class CompanyIndex extends Component {
     return (
       <section className="company-index-section">
         {companies}
-        <FormLink></FormLink>
       </section>
     );
   }

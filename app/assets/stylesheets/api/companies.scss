@@ -44,5 +44,33 @@ body {
 ::-webkit-scrollbar-thumb {
     background: purple;
     border-radius: 10px;
+}
 
+.company-info-li{
+	text-decoration: none;
+	display: block;
+	border-style: dashed;
+	color: white;
+	transition: 2s;
+	border-radius: 4px;
+
+}
+
+.company-info-holder{
+	border-color: 2px solid white;
+	// background-color: black
+}
+
+.company-info-holder:hover{
+}
+
+.company-info-ol:hover{
+	border-color: white;
+	// background-color: orange;
+	filter: hue-rotate(90deg);
+}
+
+.company-info-ol:focus{
+
+	filter: hue-rotate(90deg);
 }
