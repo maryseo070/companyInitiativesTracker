@@ -10,17 +10,17 @@ class Api::CompaniesController < ApplicationController
   end
 
   def create
-    debugger
+
     @company = Company.new(company_params)
-    debugger
+
     if @company.save
-      debugger
+
       render template: "api/companies/show.json.jbuilder"
     else
-      debugger
+
       render json: ["ERRORRRRRRRR"], status: 403
     end
-    debugger
+
   end
 
   private

@@ -1,5 +1,4 @@
 export const createCompany = company => {
-  debugger
   return $.ajax({
     method: "POST",
     url: "/api/companies",

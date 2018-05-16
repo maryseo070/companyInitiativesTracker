@@ -305,6 +305,7 @@ var CompanyForm = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var i = 1;
       return _react2.default.createElement(
         'form',
         { onSubmit: this.handleSubmit },
@@ -1214,7 +1215,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var createCompany = exports.createCompany = function createCompany(company) {
-  debugger;
   return $.ajax({
     method: "POST",
     url: "/api/companies",

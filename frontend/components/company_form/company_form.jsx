@@ -58,6 +58,7 @@ class CompanyForm extends Component{
   }
 
   render() {
+    let i = 1
     return (
       <form onSubmit={this.handleSubmit}>
         <input type="text"
