@@ -46,31 +46,32 @@ body {
     border-radius: 10px;
 }
 
-.company-info-li{
+.company-info-link{
+	border: 1px solid;
+	border-color: rgba(255, 255, 255, 0.3);
+	// border: 1px solid white;
 	text-decoration: none;
 	display: block;
-	border-style: dashed;
 	color: white;
 	transition: 2s;
-	border-radius: 4px;
-
+	padding: 10px 5px 10px 5px;
 }
 
-.company-info-holder{
-	border-color: 2px solid white;
-	// background-color: black
-}
-
-.company-info-holder:hover{
-}
-
-.company-info-ol:hover{
+.company-info-link:hover{
 	border-color: white;
+	padding: 10px;
 	// background-color: orange;
 	filter: hue-rotate(90deg);
 }
-
-.company-info-ol:focus{
-
-	filter: hue-rotate(90deg);
+.company-info-link:focus{
+	background-color: green;
+	padding: 10px;
 }
+// //
+// .company-info-holder:focus{
+// 	filter: hue-rotate(90deg);
+// }
+// .company-info-li:focus:parent{
+//
+// 	filter: hue-rotate(90deg);
+// }

@@ -324,7 +324,9 @@ var CompanyForm = function (_Component) {
             onChange: this.updateField("location") }),
           _react2.default.createElement(
             'select',
-            { onChange: this.updateInit() },
+            {
+              className: 'company-form-select',
+              onChange: this.updateInit() },
             this.initiativesDropdown()
           ),
           _react2.default.createElement(
@@ -332,7 +334,9 @@ var CompanyForm = function (_Component) {
             null,
             'Description of company/initiative'
           ),
-          _react2.default.createElement('textarea', { onChange: this.updateField("description") }),
+          _react2.default.createElement('textarea', {
+            className: 'company-form-textarea',
+            onChange: this.updateField("description") }),
           _react2.default.createElement('input', { type: 'text',
             placeholder: 'Link to company website',
             onChange: this.updateField("website") }),
@@ -450,22 +454,17 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var CompanyInfo = exports.CompanyInfo = function CompanyInfo(company) {
 
   return _react2.default.createElement(
-    'ol',
-    { className: 'company-info-ol' },
+    'section',
+    { className: 'company-info-holder' },
     _react2.default.createElement(
-      'section',
-      { className: 'company-info-holder' },
-      _react2.default.createElement(
-        _reactRouterDom.Link,
-        { to: '/companies/' + company.id,
-          className: 'company-info-li' },
-        company.name,
-        _react2.default.createElement(
-          'li',
-          null,
-          company.location
-        )
-      )
+      _reactRouterDom.Link,
+      { to: '/companies/' + company.id,
+        className: 'company-info-link' },
+      company.name,
+      ' ',
+      _react2.default.createElement('br', null),
+      ' ',
+      company.location
     )
   );
 };
@@ -496,8 +495,7 @@ var CompanyIndex = function (_Component) {
     key: 'render',
     value: function render() {
       var colores = ["#800040", "#6239bd", "#9370DB", "#BA55D3", "#800080"];
-      // let companyItems = document.getElementsByClassName("company-info-ol");
-      $(".company-info-ol").css("background-color", colores[Math.floor(Math.random() * 5)]);
+      $(".company-index-section").css("background-color", colores[Math.floor(Math.random() * 5)]);
       var companies = (0, _selectors.selectChildCompanies)(this.props.companies, this.props.initFilter);
       var indexforKey = 1;
       companies = Object.values(companies);

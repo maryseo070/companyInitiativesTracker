@@ -6,14 +6,11 @@ import { selectChildCompanies } from '../../reducers/selectors.js';
 export const CompanyInfo = (company) => {
 
   return (
-    <ol className="company-info-ol">
-      <section className="company-info-holder">
-        <Link to={`/companies/${company.id}`}
-          className="company-info-li">{company.name}
-          <li>{company.location}</li>
-        </Link>
-      </section>
-    </ol>
+    <section className="company-info-holder">
+      <Link to={`/companies/${company.id}`}
+        className="company-info-link">{company.name} <br></br> {company.location}
+      </Link>
+    </section>
   );
 };
 
@@ -37,10 +34,9 @@ class CompanyIndex extends Component {
     let colores = [
       "#800040", "#6239bd", "#9370DB", "#BA55D3", "#800080"
     ];
-    // let companyItems = document.getElementsByClassName("company-info-ol");
-    $(".company-info-ol").css(
+    $(".company-index-section").css(
       "background-color", colores[Math.floor(Math.random() * 5)]
-    ) 
+    )
     let companies = selectChildCompanies(
       this.props.companies, this.props.initFilter
     );

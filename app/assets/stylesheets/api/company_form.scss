@@ -9,5 +9,28 @@ input[type="text"]{
 
 .company-form-holder{
   margin-top: 10%;
+}
 
+.company-form-textarea{
+  width: 60%;
+  height: 250px;
+}
+
+select {
+  height: 29px;
+ overflow: hidden;
+ width: 240px;
+}
+
+.company-form-select{
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  height: 29px;
+  padding: 5px; /* If you add too much padding here, the options won't show in IE */
+  width: 268px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #779126;
 }

@@ -72,11 +72,15 @@ class CompanyForm extends Component{
             placeholder="Location(City and State)"
             value={this.state.location}
             onChange={this.updateField("location")}/>
-          <select onChange={this.updateInit()}>
+          <select
+            className="company-form-select"
+            onChange={this.updateInit()}>
             {this.initiativesDropdown()}
           </select>
           <div>Description of company/initiative</div>
-          <textarea onChange={this.updateField("description")}/>
+          <textarea
+            className="company-form-textarea"
+            onChange={this.updateField("description")}/>
           <input type="text"
             placeholder="Link to company website"
             onChange={this.updateField("website")}/>

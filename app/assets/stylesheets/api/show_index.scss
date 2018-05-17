@@ -18,6 +18,10 @@
   opacity: 0.8;
 }
 
+button{
+  outline: none;
+}
+
 .initiative-button:focus{
   padding-right: 25px;
   font-weight: bold;
