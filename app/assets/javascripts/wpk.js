@@ -309,16 +309,22 @@ var CompanyForm = function (_Component) {
       return _react2.default.createElement(
         'section',
         { className: 'company-form-holder' },
-        'Want to add a company to the initiative list? Submit form!',
+        _react2.default.createElement(
+          'div',
+          { className: 'company-form-question' },
+          'Want to add a company to the initiative list? Submit a form for approval!'
+        ),
         _react2.default.createElement(
           'form',
-          { onSubmit: this.handleSubmit },
+          { onSubmit: this.handleSubmit, className: 'company-form' },
           _react2.default.createElement('input', { type: 'text',
+            className: 'company-form-name',
             key: i++,
             placeholder: 'Company Name',
             value: this.state.name,
             onChange: this.updateName }),
           _react2.default.createElement('input', { type: 'text',
+            className: 'company-form-location',
             placeholder: 'Location(City and State)',
             value: this.state.location,
             onChange: this.updateField("location") }),
@@ -337,14 +343,18 @@ var CompanyForm = function (_Component) {
           _react2.default.createElement('textarea', {
             className: 'company-form-textarea',
             onChange: this.updateField("description") }),
-          _react2.default.createElement('input', { type: 'text',
+          _react2.default.createElement('input', {
+            className: 'company-form-link',
+            type: 'text',
             placeholder: 'Link to company website',
             onChange: this.updateField("website") }),
           _react2.default.createElement('input', {
+            className: 'company-form-jobs',
             type: 'text',
             placeholder: 'Link to company job postings',
             onChange: this.updateField("job_postings") }),
           _react2.default.createElement('input', {
+            className: 'company-form-submit',
             type: 'submit',
             value: 'Submit Company' })
         )
@@ -862,15 +872,15 @@ var ShowIndex = function (_Component) {
           'section',
           { className: 'init-buttons-section' },
           'Filter by Initiative Category',
-          this.initiativeButtons(),
           _react2.default.createElement(
             'button',
             {
               onClick: this.handleClick(),
               className: 'initiative-button',
               value: '0' },
-            'All'
-          )
+            'all'
+          ),
+          this.initiativeButtons()
         )
       );
     }

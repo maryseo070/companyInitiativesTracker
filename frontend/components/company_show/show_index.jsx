@@ -74,11 +74,11 @@ class ShowIndex extends Component {
         </CompanyShowContainer>
         <section className="init-buttons-section">
           Filter by Initiative Category
+          <button
+            onClick={this.handleClick()}
+            className="initiative-button"
+            value="0" >all</button>
           {this.initiativeButtons()}
-            <button
-              onClick={this.handleClick()}
-              className="initiative-button"
-              value="0" >All</button>
 
         </section>
       </div>

@@ -61,14 +61,18 @@ class CompanyForm extends Component{
     let i = 1;
     return (
       <section className="company-form-holder">
-        Want to add a company to the initiative list? Submit form!
-        <form onSubmit={this.handleSubmit}>
+        <div className="company-form-question">
+          Want to add a company to the initiative list? Submit a form for approval!
+        </div>
+        <form onSubmit={this.handleSubmit} className="company-form">
           <input type="text"
+            className="company-form-name"
             key={i++}
             placeholder="Company Name"
             value={this.state.name}
             onChange={this.updateName}/>
           <input type="text"
+            className="company-form-location"
             placeholder="Location(City and State)"
             value={this.state.location}
             onChange={this.updateField("location")}/>
@@ -81,14 +85,18 @@ class CompanyForm extends Component{
           <textarea
             className="company-form-textarea"
             onChange={this.updateField("description")}/>
-          <input type="text"
+          <input
+            className="company-form-link"
+            type="text"
             placeholder="Link to company website"
             onChange={this.updateField("website")}/>
           <input
+            className="company-form-jobs"
             type="text"
             placeholder="Link to company job postings"
             onChange={this.updateField("job_postings")}/>
           <input
+            className="company-form-submit"
             type="submit"
             value="Submit Company"/>
         </form>

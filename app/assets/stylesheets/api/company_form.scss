@@ -1,36 +1,86 @@
-input[type="text"]{
+
+input[type="submit"] {
+  background-color: #779126;
+  font-family: Courier;
+  color: white;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
   width: 20%;
+  outline:none;
+}
+input[type="text"]{
+  width: 30%;
   padding: 8px 12px;
-  margin: 8px 0;
   box-sizing: border-box;
-  margin: 3% 0 3% 0;
   border-radius: 4px;
+  font-family: Courier;
+  outline:none;
 }
 
 .company-form-holder{
+  border-top: 2px solid;
+	border-color: rgba(255, 255, 255, 0.5);
   margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+}
+
+.company-form-question{
+  font-weight: bold;
+  margin: auto;
+}
+
+.company-form{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .company-form-textarea{
   width: 60%;
   height: 250px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-family: Courier;
+  outline: none;
 }
 
 select {
   height: 29px;
- overflow: hidden;
- width: 240px;
+  overflow: hidden;
+  width: 240px;
+  outline:none;
 }
+
 
 .company-form-select{
   background: transparent;
   border: none;
   font-size: 14px;
+  font-family: Courier;
   height: 29px;
   padding: 5px; /* If you add too much padding here, the options won't show in IE */
   width: 268px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+  color: white;
   background-color: #779126;
+  margin: 8px;
+}
+
+.company-form-name{
+  margin: 8px;
+}
+.company-form-location{
+  margin: 8px
+}
+
+.company-form-jobs{
+  margin: 8px;
+}
+.company-form-link{
+  margin: 8px;
 }
