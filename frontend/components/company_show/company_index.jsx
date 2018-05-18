@@ -36,7 +36,7 @@ class CompanyIndex extends Component {
     ];
     $(".company-index-section").css(
       "background-color", colores[Math.floor(Math.random() * 5)]
-    )
+    );
     let companies = selectChildCompanies(
       this.props.companies, this.props.initFilter
     );

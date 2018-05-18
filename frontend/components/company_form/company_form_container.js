@@ -4,6 +4,8 @@ import {
 } from '../../actions/company_actions';
 import {connect} from 'react-redux';
 import CompanyForm from './company_form';
+import {withRouter} from 'react-router-dom';
+
 
 const msp = (state) => {
   return {
@@ -18,4 +20,4 @@ const mdp = dispatch => {
   };
 };
 
-export default connect(msp, mdp)(CompanyForm);
+export default withRouter(connect(msp, mdp)(CompanyForm));

@@ -35,7 +35,7 @@ accessibility = Initiative.create(
 )
 
 buyAndGive = Initiative.create(
-  category: "buyAndGive"
+  category: "buy and give"
 )
 education = Initiative.create(
   category: "education"

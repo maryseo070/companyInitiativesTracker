@@ -20,9 +20,7 @@ class CompanyForm extends Component{
     this.updateInit = this.updateInit.bind(this);
     this.updateName = this.updateName.bind(this);
   }
-  // componentDidMount() {
-  //   console.log(this.state)
-  // }
+
 
   handleSubmit(e){
     e.preventDefault();
@@ -50,21 +48,24 @@ class CompanyForm extends Component{
   initiativesDropdown() {
     let inits = Object.values(this.props.initiatives);
     return inits.map( (init, i) => (
-        <option
-          key={Math.random() * 5000}
-          value={init.id}>
-          {init.category}</option>
+      <option
+        key={i}
+        value={init.id}>
+        {init.category}</option>
     ));
   }
+
 
   render() {
     let i = 1;
     return (
-      <section className="company-form-holder">
+      <section className="company-form-holder" >
         <div className="company-form-question">
           Want to add a company to the initiative list? Submit a form for approval!
         </div>
-        <form onSubmit={this.handleSubmit} className="company-form">
+        <form
+          onSubmit={this.handleSubmit}
+          className="company-form">
           <input type="text"
             className="company-form-name"
             key={i++}
@@ -79,6 +80,7 @@ class CompanyForm extends Component{
           <select
             className="company-form-select"
             onChange={this.updateInit()}>
+            <option value="" disabled selected>Select Initiative</option>
             {this.initiativesDropdown()}
           </select>
           <div>Description of company/initiative</div>

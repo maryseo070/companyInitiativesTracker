@@ -1,8 +1,8 @@
 [class*="initiative-button"]{
+  min-width: 200px;
   font-family: Courier;
   display: block;
   border-radius: 4px;
-  // background-color: purple;
   border: none;
   color: #FFFFFF;
   text-align: center;
@@ -11,10 +11,11 @@
   transition: all 0.5s;
   cursor: pointer;
   margin: 8px;
+  width: 50%;
 }
 
 .initiative-button:hover{
-  padding-right: 25px;
+  padding-left: 25px;
   opacity: 0.8;
 }
 
@@ -23,13 +24,17 @@ button{
 }
 
 .initiative-button:focus{
-  padding-right: 25px;
+  padding-left: 25px;
   font-weight: bold;
   // opacity: 0.5;
   color: black;
 }
 
 .init-buttons-section{
-  font-weight:bold;
+  font-weight: bold;
   font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // justify-content: flex-end;
 }

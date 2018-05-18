@@ -8,6 +8,7 @@ input[type="submit"] {
   border-radius: 5px;
   padding: 5px;
   width: 20%;
+  min-width: 130px;
   outline:none;
 }
 input[type="text"]{
@@ -54,8 +55,12 @@ select {
   outline:none;
 }
 
+input.placeholder{
+  text-align: center;
+}
 
 .company-form-select{
+  text-align-last: center;
   background: transparent;
   border: none;
   font-size: 14px;

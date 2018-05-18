@@ -6,6 +6,7 @@ import {
 import {merge} from 'lodash';
 
 const companyReducer = (state = {}, action) => {
+
   Object.freeze(state);
   switch(action.type) {
     case RECEIVE_COMPANIES:

@@ -250,9 +250,6 @@ var CompanyForm = function (_Component) {
     _this.updateName = _this.updateName.bind(_this);
     return _this;
   }
-  // componentDidMount() {
-  //   console.log(this.state)
-  // }
 
   _createClass(CompanyForm, [{
     key: 'handleSubmit',
@@ -296,7 +293,7 @@ var CompanyForm = function (_Component) {
         return _react2.default.createElement(
           'option',
           {
-            key: Math.random() * 5000,
+            key: i,
             value: init.id },
           init.category
         );
@@ -316,7 +313,9 @@ var CompanyForm = function (_Component) {
         ),
         _react2.default.createElement(
           'form',
-          { onSubmit: this.handleSubmit, className: 'company-form' },
+          {
+            onSubmit: this.handleSubmit,
+            className: 'company-form' },
           _react2.default.createElement('input', { type: 'text',
             className: 'company-form-name',
             key: i++,
@@ -333,6 +332,11 @@ var CompanyForm = function (_Component) {
             {
               className: 'company-form-select',
               onChange: this.updateInit() },
+            _react2.default.createElement(
+              'option',
+              { value: '', disabled: true, selected: true },
+              'Select Initiative'
+            ),
             this.initiativesDropdown()
           ),
           _react2.default.createElement(
@@ -399,6 +403,8 @@ var _company_form = __webpack_require__(/*! ./company_form */ "./frontend/compon
 
 var _company_form2 = _interopRequireDefault(_company_form);
 
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var msp = function msp(state) {
@@ -418,7 +424,7 @@ var mdp = function mdp(dispatch) {
   };
 };
 
-exports.default = (0, _reactRedux.connect)(msp, mdp)(_company_form2.default);
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(msp, mdp)(_company_form2.default));
 
 /***/ }),
 
@@ -1065,6 +1071,7 @@ var _lodash = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js
 var companyReducer = function companyReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments[1];
+
 
   Object.freeze(state);
   switch (action.type) {

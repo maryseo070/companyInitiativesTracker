@@ -79,7 +79,6 @@ class ShowIndex extends Component {
             className="initiative-button"
             value="0" >all</button>
           {this.initiativeButtons()}
-
         </section>
       </div>
     );

@@ -1,5 +1,4 @@
 class Api::CompaniesController < ApplicationController
-
   def index
     @companies = Company.all
   end
@@ -10,7 +9,6 @@ class Api::CompaniesController < ApplicationController
   end
 
   def create
-
     @company = Company.new(company_params)
 
     if @company.save
@@ -27,7 +25,7 @@ class Api::CompaniesController < ApplicationController
   def company_params
     params
     .require(:company)
-    .permit(:name, :location, :description, :website, :job_postings)
+    .permit(:name, :location, :description, :website, :job_postings, :initiative_id)
   end
 
 end
