@@ -21,7 +21,6 @@ class CompanyForm extends Component{
     this.updateName = this.updateName.bind(this);
   }
 
-
   handleSubmit(e){
     e.preventDefault();
     let company = Object.assign({}, this.state);

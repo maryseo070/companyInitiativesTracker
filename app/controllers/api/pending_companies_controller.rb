@@ -9,6 +9,8 @@ class Api::PendingCompaniesController < ApplicationController
   end
 
   def destroy
+    @pending_company = Company.find(params[:id])
+    @pending_company.destroy!
   end
 
   def edit
@@ -20,7 +22,7 @@ class Api::PendingCompaniesController < ApplicationController
   private
   def pending_company_params
     params
-    .require(:company)
+    .require(:pending_company)
     .permit(:name, :location, :description, :website, :job_postings, :initiative_id)
   end
 
