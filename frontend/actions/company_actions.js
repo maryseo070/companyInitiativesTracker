@@ -7,7 +7,7 @@ export const RECEIVE_INITIATIVES = "RECEIVE_INITIATIVES";
 
 export const createCompany = (company) => dispatch => {
   return CompanyApiUtil.createCompany(company).then(
-    (company) => dispatch(receiveCompany(company))
+    (c) => dispatch(receiveCompany(c))
   );
 };
 

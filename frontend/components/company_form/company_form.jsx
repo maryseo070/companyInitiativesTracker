@@ -24,7 +24,7 @@ class CompanyForm extends Component{
   handleSubmit(e){
     e.preventDefault();
     let company = Object.assign({}, this.state);
-    this.props.createCompany(company).then(
+    this.props.createPendingComp(company).then(
       () => this.props.history.push(`/companies/1`)
     );
   }
@@ -97,6 +97,7 @@ class CompanyForm extends Component{
             placeholder="Link to company job postings"
             onChange={this.updateField("job_postings")}/>
           <input
+            type="button"
             className="company-form-submit"
             type="submit"
             value="Submit Company"/>

@@ -98,8 +98,8 @@ var RECEIVE_INITIATIVES = exports.RECEIVE_INITIATIVES = "RECEIVE_INITIATIVES";
 
 var createCompany = exports.createCompany = function createCompany(company) {
   return function (dispatch) {
-    return CompanyApiUtil.createCompany(company).then(function (company) {
-      return dispatch(receiveCompany(company));
+    return CompanyApiUtil.createCompany(company).then(function (c) {
+      return dispatch(receiveCompany(c));
     });
   };
 };
@@ -146,6 +146,70 @@ var receiveCompany = exports.receiveCompany = function receiveCompany(company) {
   return {
     type: RECEIVE_COMPANY,
     company: company
+  };
+};
+
+/***/ }),
+
+/***/ "./frontend/actions/pending_company_actions.js":
+/*!*****************************************************!*\
+  !*** ./frontend/actions/pending_company_actions.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.fetchPendingComps = exports.fetchPendingComp = exports.receivePendingComps = exports.receivePendingComp = exports.createPendingComp = exports.RECEIVE_PENDING_COMPS = exports.RECEIVE_PENDING_COMP = undefined;
+
+var _pending_company_api_util = __webpack_require__(/*! ../util/pending_company_api_util.js */ "./frontend/util/pending_company_api_util.js");
+
+var PendingCompApiUtil = _interopRequireWildcard(_pending_company_api_util);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var RECEIVE_PENDING_COMP = exports.RECEIVE_PENDING_COMP = "RECEIVE_PENDING_COMP";
+var RECEIVE_PENDING_COMPS = exports.RECEIVE_PENDING_COMPS = "RECEIVE_PENDING_COMPS";
+
+var createPendingComp = exports.createPendingComp = function createPendingComp(company) {
+  return function (dispatch) {
+    return PendingCompApiUtil.createPendingComp(company).then(function (c) {
+      return dispatch(receivePendingComp(c));
+    });
+  };
+};
+
+var receivePendingComp = exports.receivePendingComp = function receivePendingComp(company) {
+  return {
+    type: RECEIVE_PENDING_COMP,
+    company: company
+  };
+};
+
+var receivePendingComps = exports.receivePendingComps = function receivePendingComps(companies) {
+  return {
+    type: RECEIVE_PENDING_COMPS,
+    companies: companies
+  };
+};
+
+var fetchPendingComp = exports.fetchPendingComp = function fetchPendingComp(id) {
+  return function (dispatch) {
+    return PendingCompApiUtil.fetchPendingComp(id).then(function (company) {
+      return dispatch(receivePendingComp(company));
+    });
+  };
+};
+
+var fetchPendingComps = exports.fetchPendingComps = function fetchPendingComps() {
+  return function (dispatch) {
+    return PendingCompApiUtil.fetchPendingComps().then(function (companies) {
+      return dispatch(receivePendingComps(companies));
+    });
   };
 };
 
@@ -258,7 +322,7 @@ var CompanyForm = function (_Component) {
 
       e.preventDefault();
       var company = Object.assign({}, this.state);
-      this.props.createCompany(company).then(function () {
+      this.props.createPendingComp(company).then(function () {
         return _this2.props.history.push('/companies/1');
       });
     }
@@ -302,6 +366,8 @@ var CompanyForm = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _React$createElement;
+
       var i = 1;
       return _react2.default.createElement(
         'section',
@@ -357,10 +423,10 @@ var CompanyForm = function (_Component) {
             type: 'text',
             placeholder: 'Link to company job postings',
             onChange: this.updateField("job_postings") }),
-          _react2.default.createElement('input', {
-            className: 'company-form-submit',
-            type: 'submit',
-            value: 'Submit Company' })
+          _react2.default.createElement('input', (_React$createElement = {
+            type: 'button',
+            className: 'company-form-submit'
+          }, _defineProperty(_React$createElement, 'type', 'submit'), _defineProperty(_React$createElement, 'value', 'Submit Company'), _React$createElement))
         )
       );
     }
@@ -395,6 +461,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _pending_company_actions = __webpack_require__(/*! ../../actions/pending_company_actions */ "./frontend/actions/pending_company_actions.js");
+
 var _company_actions = __webpack_require__(/*! ../../actions/company_actions */ "./frontend/actions/company_actions.js");
 
 var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
@@ -409,14 +477,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var msp = function msp(state) {
   return {
-    initiatives: state.entities.companies.initiatives
+    initiatives: state.entities.companies.initiatives,
+    pendingCompanies: state.entities.pendingCompanies
   };
 };
 
 var mdp = function mdp(dispatch) {
   return {
-    createCompany: function createCompany(company) {
-      return dispatch((0, _company_actions.createCompany)(company));
+    createPendingComp: function createPendingComp(company) {
+      return dispatch((0, _pending_company_actions.createPendingComp)(company));
     },
     fetchInitiatives: function fetchInitiatives() {
       return dispatch((0, _company_actions.fetchInitiatives)());
@@ -1110,13 +1179,55 @@ var _company_reducer = __webpack_require__(/*! ./company_reducer */ "./frontend/
 
 var _company_reducer2 = _interopRequireDefault(_company_reducer);
 
+var _pending_company_reducer = __webpack_require__(/*! ./pending_company_reducer */ "./frontend/reducers/pending_company_reducer.js");
+
+var _pending_company_reducer2 = _interopRequireDefault(_pending_company_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var entitiesReducer = (0, _redux.combineReducers)({
-  companies: _company_reducer2.default
+  companies: _company_reducer2.default,
+  pendingCompanies: _pending_company_reducer2.default
 });
 
 exports.default = entitiesReducer;
+
+/***/ }),
+
+/***/ "./frontend/reducers/pending_company_reducer.js":
+/*!******************************************************!*\
+  !*** ./frontend/reducers/pending_company_reducer.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _pending_company_actions = __webpack_require__(/*! ../actions/pending_company_actions */ "./frontend/actions/pending_company_actions.js");
+
+var _lodash = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+
+var pendingCompanyReducer = function pendingCompanyReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments[1];
+
+  Object.freeze(state);
+  switch (action.type) {
+    case _pending_company_actions.RECEIVE_PENDING_COMP:
+      return (0, _lodash.merge)({}, state, action.company);
+    case _pending_company_actions.RECEIVE_PENDING_COMPS:
+      return (0, _lodash.merge)({}, state, action.companies);
+    default:
+      return state;
+  }
+};
+
+exports.default = pendingCompanyReducer;
 
 /***/ }),
 
@@ -1264,6 +1375,44 @@ var fetchInitiatives = exports.fetchInitiatives = function fetchInitiatives() {
   return $.ajax({
     method: "GET",
     url: "/api/initiatives"
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/pending_company_api_util.js":
+/*!***************************************************!*\
+  !*** ./frontend/util/pending_company_api_util.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var createPendingComp = exports.createPendingComp = function createPendingComp(company) {
+  return $.ajax({
+    method: "POST",
+    url: "/api/pending_companies",
+    dataType: "json",
+    data: { company: company }
+  });
+};
+
+var fetchPendingComps = exports.fetchPendingComps = function fetchPendingComps() {
+  return $.ajax({
+    method: "GET",
+    url: "/api/pending_companies"
+  });
+};
+
+var fetchPendingComp = exports.fetchPendingComp = function fetchPendingComp(id) {
+  return $.ajax({
+    method: "GET",
+    url: "/api/pending_companies/" + id
   });
 };
 

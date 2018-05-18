@@ -3,6 +3,8 @@ import {
   RECEIVE_COMPANY,
   RECEIVE_INITIATIVES
 } from '../actions/company_actions.js';
+
+
 import {merge} from 'lodash';
 
 const companyReducer = (state = {}, action) => {
