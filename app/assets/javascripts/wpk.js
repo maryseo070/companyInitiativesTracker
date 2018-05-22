@@ -898,9 +898,13 @@ var ShowIndex = function (_Component) {
 
       var initiatives = this.props.initiatives;
       initiatives = Object.values(initiatives);
-      var colors = ["#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"];
-
-      $(".initiative-button").css("background-color", colors[Math.floor(Math.random() * 6)]);
+      // let colors = [
+      //   "#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"
+      // ];
+      //
+      // $(".initiative-button").css(
+      //   "background-color", colors[Math.floor(Math.random() * 6)]
+      // );
 
       return initiatives.map(function (i, key) {
         return _react2.default.createElement(
@@ -924,6 +928,9 @@ var ShowIndex = function (_Component) {
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
+      var colors = ["#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"];
+
+      $(".initiative-button").css("background-color", colors[Math.floor(Math.random() * 6)]);
       this.props.fetchCompany();
       this.props.fetchInitiatives();
     }

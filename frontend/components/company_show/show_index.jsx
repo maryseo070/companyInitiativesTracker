@@ -22,13 +22,13 @@ class ShowIndex extends Component {
   initiativeButtons(){
     let initiatives = this.props.initiatives;
     initiatives = Object.values(initiatives);
-    let colors = [
-      "#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"
-    ];
-
-    $(".initiative-button").css(
-      "background-color", colors[Math.floor(Math.random() * 6)]
-    );
+    // let colors = [
+    //   "#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"
+    // ];
+    //
+    // $(".initiative-button").css(
+    //   "background-color", colors[Math.floor(Math.random() * 6)]
+    // );
 
     return initiatives.map( (i, key) => (
       <button
@@ -47,9 +47,15 @@ class ShowIndex extends Component {
   }
 
   componentDidMount () {
+    let colors = [
+      "#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"
+    ];
+
+    $(".initiative-button").css(
+      "background-color", colors[Math.floor(Math.random() * 6)]
+    );
     this.props.fetchCompany();
     this.props.fetchInitiatives();
-
   }
 
 
