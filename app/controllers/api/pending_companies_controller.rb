@@ -1,6 +1,7 @@
 class Api::PendingCompaniesController < ApplicationController
   def index
     @pending_companies = PendingCompany.all
+    render template: "api/pending_companies/index.json.jbuilder"
   end
 
   def create
@@ -8,7 +9,7 @@ class Api::PendingCompaniesController < ApplicationController
 
     if @company.save
 
-      render template: "api/companies/show.json.jbuilder"
+      render template: "api/pending_companies/index.json.jbuilder"
     else
 
       render json: ["ERRORRRRRRRR"], status: 403

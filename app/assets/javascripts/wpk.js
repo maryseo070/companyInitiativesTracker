@@ -239,18 +239,26 @@ var _show_index_container = __webpack_require__(/*! ./company_show/show_index_co
 
 var _show_index_container2 = _interopRequireDefault(_show_index_container);
 
+var _pending_companies_container = __webpack_require__(/*! ./pending_company/pending_companies_container */ "./frontend/components/pending_company/pending_companies_container.js");
+
+var _pending_companies_container2 = _interopRequireDefault(_pending_companies_container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// import CompanyShowContainer from './company_show/company_show_container.js';
 var App = function App() {
   return _react2.default.createElement(
     'div',
     null,
     _react2.default.createElement(_reactRouter.Route, {
       exact: true, path: '/companies/:companyId',
-      component: _show_index_container2.default })
+      component: _show_index_container2.default }),
+    _react2.default.createElement(_reactRouter.Route, {
+      exact: true, path: '/pendingCompanies',
+      component: _pending_companies_container2.default })
   );
 };
-// import CompanyShowContainer from './company_show/company_show_container.js';
+
 exports.default = App;
 
 /***/ }),
@@ -1036,6 +1044,148 @@ var mdp = function mdp(dispatch) {
 };
 
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(msp, mdp)(_show_index2.default));
+
+/***/ }),
+
+/***/ "./frontend/components/pending_company/pending_companies.jsx":
+/*!*******************************************************************!*\
+  !*** ./frontend/components/pending_company/pending_companies.jsx ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+//create a form under an index of pending companies that on click of each company creates a
+//real company
+
+var PendingCompanyForm = function (_Component) {
+  _inherits(PendingCompanyForm, _Component);
+
+  function PendingCompanyForm(props) {
+    _classCallCheck(this, PendingCompanyForm);
+
+    var _this = _possibleConstructorReturn(this, (PendingCompanyForm.__proto__ || Object.getPrototypeOf(PendingCompanyForm)).call(this, props));
+
+    _this.pendingIndex = _this.pendingIndex.bind(_this);
+    return _this;
+  }
+
+  _createClass(PendingCompanyForm, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.fetchPendingComps();
+    }
+  }, {
+    key: 'pendingIndex',
+    value: function pendingIndex() {
+      // let pendings = this.props.pendingCompanies;
+      // debugger
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      debugger;
+      var pendings = Object.values(this.props.pendingCompanies).map(function (comp, i) {
+        return _react2.default.createElement(
+          'div',
+          { key: Math.random() * 500 },
+          'HEY YOU'
+        );
+      });
+
+      return _react2.default.createElement(
+        'section',
+        null,
+        pendings
+      );
+    }
+  }]);
+
+  return PendingCompanyForm;
+}(_react.Component);
+
+PendingCompanyForm.propType = {
+  pendingCompanies: _propTypes2.default.object
+};
+
+PendingCompanyForm.defaultProps = {
+  pendingCompanies: {}
+};
+
+exports.default = PendingCompanyForm;
+
+/***/ }),
+
+/***/ "./frontend/components/pending_company/pending_companies_container.js":
+/*!****************************************************************************!*\
+  !*** ./frontend/components/pending_company/pending_companies_container.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _pending_company_actions = __webpack_require__(/*! ../../actions/pending_company_actions */ "./frontend/actions/pending_company_actions.js");
+
+var _company_actions = __webpack_require__(/*! ../../actions/company_actions */ "./frontend/actions/company_actions.js");
+
+var _pending_companies = __webpack_require__(/*! ./pending_companies.jsx */ "./frontend/components/pending_company/pending_companies.jsx");
+
+var _pending_companies2 = _interopRequireDefault(_pending_companies);
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var msp = function msp(state) {
+  return {
+    pendingCompanies: state.entities.pendingCompanies
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {
+    fetchPendingComps: function fetchPendingComps() {
+      return dispatch((0, _pending_company_actions.fetchPendingComps)());
+    },
+    createCompany: function createCompany(company) {
+      return dispatch((0, _company_actions.createCompany)(company));
+    }
+  };
+};
+
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(msp, mdp)(_pending_companies2.default));
 
 /***/ }),
 
