@@ -13,15 +13,17 @@ class PendingCompanyForm extends Component {
     this.props.fetchPendingComps();
   }
 
-  pendingIndex() {
-    // let pendings = this.props.pendingCompanies;
-    // debugger
-  }
-
   render() {
-    debugger
     let pendings = Object.values(this.props.pendingCompanies).map((comp, i) => {
-      return (<div key={Math.random() * 500}>HEY YOU</div>);
+      return (
+        <div key={i}>
+          <div>{comp.name}</div>
+          <div>{comp.location}</div>
+          <div>{comp.website}</div>
+          <div>{comp.job_postings}</div>
+          <div>{comp.initiative_id}</div>
+        </div>
+      );
     });
 
     return (

@@ -1100,20 +1100,37 @@ var PendingCompanyForm = function (_Component) {
       this.props.fetchPendingComps();
     }
   }, {
-    key: 'pendingIndex',
-    value: function pendingIndex() {
-      // let pendings = this.props.pendingCompanies;
-      // debugger
-    }
-  }, {
     key: 'render',
     value: function render() {
-      debugger;
       var pendings = Object.values(this.props.pendingCompanies).map(function (comp, i) {
         return _react2.default.createElement(
           'div',
-          { key: Math.random() * 500 },
-          'HEY YOU'
+          { key: i },
+          _react2.default.createElement(
+            'div',
+            null,
+            comp.name
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            comp.location
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            comp.website
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            comp.job_postings
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            comp.initiative_id
+          )
         );
       });
 
