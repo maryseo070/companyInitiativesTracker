@@ -1088,10 +1088,7 @@ var PendingCompanyForm = function (_Component) {
   function PendingCompanyForm(props) {
     _classCallCheck(this, PendingCompanyForm);
 
-    var _this = _possibleConstructorReturn(this, (PendingCompanyForm.__proto__ || Object.getPrototypeOf(PendingCompanyForm)).call(this, props));
-
-    _this.pendingIndex = _this.pendingIndex.bind(_this);
-    return _this;
+    return _possibleConstructorReturn(this, (PendingCompanyForm.__proto__ || Object.getPrototypeOf(PendingCompanyForm)).call(this, props));
   }
 
   _createClass(PendingCompanyForm, [{
@@ -1102,10 +1099,14 @@ var PendingCompanyForm = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
+      debugger;
       var pendings = Object.values(this.props.pendingCompanies).map(function (comp, i) {
+
         return _react2.default.createElement(
           'div',
-          { key: i },
+          { key: i, className: 'pending-comp-object' },
           _react2.default.createElement(
             'div',
             null,
@@ -1130,6 +1131,11 @@ var PendingCompanyForm = function (_Component) {
             'div',
             null,
             comp.initiative_id
+          ),
+          _react2.default.createElement(
+            'button',
+            { onClick: _this2.props.createCompany(comp) },
+            'Approve Company'
           )
         );
       });

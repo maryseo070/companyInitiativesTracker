@@ -1,3 +1,9 @@
 // Place all the styles related to the Api/PendingCompanies controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.pending-comp-object {
+  border: 1px solid green;
+  display: flex;
+  flex-direction: column;
+}
