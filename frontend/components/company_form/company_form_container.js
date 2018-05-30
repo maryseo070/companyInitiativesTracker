@@ -2,9 +2,9 @@ import {
   createPendingComp
 } from '../../actions/pending_company_actions';
 import { fetchInitiatives } from '../../actions/company_actions';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import CompanyForm from './company_form';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 
 const msp = (state) => {
