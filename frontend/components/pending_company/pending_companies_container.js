@@ -1,8 +1,9 @@
-import {fetchPendingComps} from '../../actions/pending_company_actions';
-import {createCompany} from '../../actions/company_actions';
+import { fetchPendingComps,
+  deletePendingComp } from '../../actions/pending_company_actions';
+import { createCompany } from '../../actions/company_actions';
 import PendingCompanyForm from './pending_companies.jsx';
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 const msp = state => {
   return {
@@ -13,7 +14,8 @@ const msp = state => {
 const mdp = dispatch => {
   return {
     fetchPendingComps: () => dispatch(fetchPendingComps()),
-    createCompany: (company) => dispatch(createCompany(company))
+    createCompany: (company) => dispatch(createCompany(company)),
+    deletePendingComp: id => dispatch(deletePendingComp(id))
   };
 };
 

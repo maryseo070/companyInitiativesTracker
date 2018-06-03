@@ -164,7 +164,7 @@ var receiveCompany = exports.receiveCompany = function receiveCompany(company) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchPendingComps = exports.fetchPendingComp = exports.receivePendingComps = exports.receivePendingComp = exports.createPendingComp = exports.RECEIVE_PENDING_COMPS = exports.RECEIVE_PENDING_COMP = undefined;
+exports.fetchPendingComps = exports.fetchPendingComp = exports.receivePendingComps = exports.receivePendingComp = exports.createPendingComp = exports.deletePendingComp = exports.RECEIVE_PENDING_COMPS = exports.RECEIVE_PENDING_COMP = undefined;
 
 var _pending_company_api_util = __webpack_require__(/*! ../util/pending_company_api_util.js */ "./frontend/util/pending_company_api_util.js");
 
@@ -174,6 +174,12 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 var RECEIVE_PENDING_COMP = exports.RECEIVE_PENDING_COMP = "RECEIVE_PENDING_COMP";
 var RECEIVE_PENDING_COMPS = exports.RECEIVE_PENDING_COMPS = "RECEIVE_PENDING_COMPS";
+
+var deletePendingComp = exports.deletePendingComp = function deletePendingComp(id) {
+  return function (dispatch) {
+    return PendingCompApiUtil.deletePendingComp(id);
+  };
+};
 
 var createPendingComp = exports.createPendingComp = function createPendingComp(company) {
   return function (dispatch) {
@@ -1086,9 +1092,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-//create a form under an index of pending companies that on click of each company creates a
-//real company
-
 var PendingCompanyForm = function (_Component) {
   _inherits(PendingCompanyForm, _Component);
 
@@ -1108,7 +1111,6 @@ var PendingCompanyForm = function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      debugger;
       var pendings = Object.values(this.props.pendingCompanies).map(function (comp, i) {
         return _react2.default.createElement(
           'div',
@@ -1140,10 +1142,21 @@ var PendingCompanyForm = function (_Component) {
           ),
           _react2.default.createElement(
             'button',
-            { onClick: function onClick() {
+            {
+              onClick: function onClick() {
                 return _this2.props.createCompany(comp);
-              } },
+              }
+            },
             'Approve Company'
+          ),
+          _react2.default.createElement(
+            'button',
+            {
+              onClick: function onClick() {
+                return _this2.props.deletePendingComp(comp.id);
+              }
+            },
+            'Delete'
           )
         );
       });
@@ -1212,6 +1225,9 @@ var mdp = function mdp(dispatch) {
     },
     createCompany: function createCompany(company) {
       return dispatch((0, _company_actions.createCompany)(company));
+    },
+    deletePendingComp: function deletePendingComp(id) {
+      return dispatch((0, _pending_company_actions.deletePendingComp)(id));
     }
   };
 };
@@ -1537,7 +1553,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var createCompany = exports.createCompany = function createCompany(company) {
-  debugger;
   return $.ajax({
     method: "POST",
     url: "/api/companies",
@@ -1582,6 +1597,13 @@ var fetchInitiatives = exports.fetchInitiatives = function fetchInitiatives() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var deletePendingComp = exports.deletePendingComp = function deletePendingComp(id) {
+  return $.ajax({
+    method: "DELETE",
+    url: "/api/pending_companies/" + id
+  });
+};
+
 var createPendingComp = exports.createPendingComp = function createPendingComp(company) {
   return $.ajax({
     method: "POST",

@@ -1,7 +1,6 @@
 import React,{Component}  from 'react';
 import PropTypes from 'prop-types';
-//create a form under an index of pending companies that on click of each company creates a
-//real company
+
 
 class PendingCompanyForm extends Component {
   constructor(props){
@@ -13,7 +12,6 @@ class PendingCompanyForm extends Component {
   }
 
   render() {
-    debugger
     let pendings = Object.values(this.props.pendingCompanies).map((comp, i) => {
       return (
         <div key={i} className="pending-comp-object">
@@ -22,7 +20,12 @@ class PendingCompanyForm extends Component {
           <div>{comp.website}</div>
           <div>{comp.job_postings}</div>
           <div>{comp.initiative_id}</div>
-          <button onClick={() => this.props.createCompany(comp)}>Approve Company</button>
+          <button
+            onClick={ () => this.props.createCompany(comp)}
+            >Approve Company</button>
+          <button
+            onClick={ () => this.props.deletePendingComp(comp.id) }
+            >Delete</button>
         </div>
       );
     });

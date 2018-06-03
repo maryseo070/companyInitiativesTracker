@@ -8,7 +8,7 @@ class Api::PendingCompaniesController < ApplicationController
     @company = PendingCompany.new(pending_company_params)
 
     if @company.save
-
+      @pending_companies = PendingCompany.all
       render template: "api/pending_companies/index.json.jbuilder"
     else
 
@@ -25,6 +25,8 @@ class Api::PendingCompaniesController < ApplicationController
   def destroy
     @pending_company = PendingCompany.find(params[:id])
     @pending_company.destroy!
+    @pending_companies = PendingCompany.all
+    render template: 'api/pending_companies/index.json.jbuilder'
   end
 
   def edit

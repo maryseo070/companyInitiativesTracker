@@ -1,3 +1,10 @@
+export const deletePendingComp = id => {
+  return $.ajax({
+    method: "DELETE",
+    url: `/api/pending_companies/${id}`
+  });
+};
+
 export const createPendingComp = company => {
   return $.ajax({
     method: "POST",
