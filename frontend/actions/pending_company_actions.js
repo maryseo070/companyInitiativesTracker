@@ -10,17 +10,17 @@ export const createPendingComp = company => dispatch => {
   ));
 };
 
-export const receivePendingComp = company => {
+export const receivePendingComp = pendingCompany => {
   return {
     type: RECEIVE_PENDING_COMP,
-    company
+    pendingCompany
   };
 };
 
-export const receivePendingComps = companies => {
+export const receivePendingComps = pendingCompanies => {
   return {
     type: RECEIVE_PENDING_COMPS,
-    companies
+    pendingCompanies
   };
 };
 

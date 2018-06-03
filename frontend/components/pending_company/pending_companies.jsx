@@ -15,7 +15,6 @@ class PendingCompanyForm extends Component {
   render() {
     debugger
     let pendings = Object.values(this.props.pendingCompanies).map((comp, i) => {
-
       return (
         <div key={i} className="pending-comp-object">
           <div>{comp.name}</div>
@@ -23,7 +22,7 @@ class PendingCompanyForm extends Component {
           <div>{comp.website}</div>
           <div>{comp.job_postings}</div>
           <div>{comp.initiative_id}</div>
-          <button onClick={this.props.createCompany(comp)}>Approve Company</button>
+          <button onClick={() => this.props.createCompany(comp)}>Approve Company</button>
         </div>
       );
     });

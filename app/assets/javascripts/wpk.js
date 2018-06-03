@@ -183,17 +183,17 @@ var createPendingComp = exports.createPendingComp = function createPendingComp(c
   };
 };
 
-var receivePendingComp = exports.receivePendingComp = function receivePendingComp(company) {
+var receivePendingComp = exports.receivePendingComp = function receivePendingComp(pendingCompany) {
   return {
     type: RECEIVE_PENDING_COMP,
-    company: company
+    pendingCompany: pendingCompany
   };
 };
 
-var receivePendingComps = exports.receivePendingComps = function receivePendingComps(companies) {
+var receivePendingComps = exports.receivePendingComps = function receivePendingComps(pendingCompanies) {
   return {
     type: RECEIVE_PENDING_COMPS,
-    companies: companies
+    pendingCompanies: pendingCompanies
   };
 };
 
@@ -906,15 +906,16 @@ var ShowIndex = function (_Component) {
 
       var initiatives = this.props.initiatives;
       initiatives = Object.values(initiatives);
-      // let colors = [
-      //   "#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"
-      // ];
-      //
-      // $(".initiative-button").css(
-      //   "background-color", colors[Math.floor(Math.random() * 6)]
-      // );
+      var all = _react2.default.createElement(
+        'button',
+        {
+          onClick: this.handleClick(),
+          className: 'initiative-button',
+          value: '0' },
+        'all'
+      );
 
-      return initiatives.map(function (i, key) {
+      var buttons = initiatives.map(function (i, key) {
         return _react2.default.createElement(
           'button',
           {
@@ -925,6 +926,16 @@ var ShowIndex = function (_Component) {
           i.category
         );
       });
+
+      var colors = ["#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"];
+
+      $(".initiative-button").css("background-color", colors[Math.floor(Math.random() * 6)]);
+      return _react2.default.createElement(
+        'section',
+        null,
+        all,
+        buttons
+      );
     }
   }, {
     key: 'componentWillReceiveProps',
@@ -946,9 +957,13 @@ var ShowIndex = function (_Component) {
     key: 'render',
     value: function render() {
 
-      var colors = ["#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"];
-
-      $(".initiative-button").css("background-color", colors[Math.floor(Math.random() * 6)]);
+      // let colors = [
+      //   "#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"
+      // ];
+      //
+      // $(".initiative-button").css(
+      //   "background-color", colors[Math.floor(Math.random() * 6)]
+      // );
 
       return _react2.default.createElement(
         'div',
@@ -962,14 +977,6 @@ var ShowIndex = function (_Component) {
           'section',
           { className: 'init-buttons-section' },
           'Filter by Initiative Category',
-          _react2.default.createElement(
-            'button',
-            {
-              onClick: this.handleClick(),
-              className: 'initiative-button',
-              value: '0' },
-            'all'
-          ),
           this.initiativeButtons()
         )
       );
@@ -1103,7 +1110,6 @@ var PendingCompanyForm = function (_Component) {
 
       debugger;
       var pendings = Object.values(this.props.pendingCompanies).map(function (comp, i) {
-
         return _react2.default.createElement(
           'div',
           { key: i, className: 'pending-comp-object' },
@@ -1134,7 +1140,9 @@ var PendingCompanyForm = function (_Component) {
           ),
           _react2.default.createElement(
             'button',
-            { onClick: _this2.props.createCompany(comp) },
+            { onClick: function onClick() {
+                return _this2.props.createCompany(comp);
+              } },
             'Approve Company'
           )
         );
@@ -1399,9 +1407,9 @@ var pendingCompanyReducer = function pendingCompanyReducer() {
   Object.freeze(state);
   switch (action.type) {
     case _pending_company_actions.RECEIVE_PENDING_COMP:
-      return (0, _lodash.merge)({}, state, action.company);
+      return (0, _lodash.merge)({}, state, action.pendingCompany);
     case _pending_company_actions.RECEIVE_PENDING_COMPS:
-      return (0, _lodash.merge)({}, state, action.companies);
+      return (0, _lodash.merge)({}, state, action.pendingCompanies);
     default:
       return state;
   }
@@ -1529,6 +1537,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var createCompany = exports.createCompany = function createCompany(company) {
+  debugger;
   return $.ajax({
     method: "POST",
     url: "/api/companies",

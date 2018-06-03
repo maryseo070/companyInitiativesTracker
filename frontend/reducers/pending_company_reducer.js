@@ -9,9 +9,9 @@ const pendingCompanyReducer = (state = {}, action) => {
   Object.freeze(state);
   switch(action.type){
     case RECEIVE_PENDING_COMP:
-      return merge({}, state, action.company);
+      return merge({}, state, action.pendingCompany);
     case RECEIVE_PENDING_COMPS:
-      return merge({}, state, action.companies);
+      return merge({}, state, action.pendingCompanies);
     default:
       return state;
   }

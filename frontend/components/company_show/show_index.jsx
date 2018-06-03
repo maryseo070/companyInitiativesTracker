@@ -22,21 +22,32 @@ class ShowIndex extends Component {
   initiativeButtons(){
     let initiatives = this.props.initiatives;
     initiatives = Object.values(initiatives);
-    // let colors = [
-    //   "#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"
-    // ];
-    //
-    // $(".initiative-button").css(
-    //   "background-color", colors[Math.floor(Math.random() * 6)]
-    // );
+    let all = (<button
+      onClick={this.handleClick()}
+      className="initiative-button"
+      value="0" >all</button>);
 
-    return initiatives.map( (i, key) => (
+    let buttons = initiatives.map( (i, key) => (
       <button
         key={key}
         className="initiative-button"
         onClick={this.handleClick()}
         value={i.id} >{i.category}</button>
     ));
+
+    let colors = [
+      "#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"
+    ];
+
+    $(".initiative-button").css(
+      "background-color", colors[Math.floor(Math.random() * 6)]
+    );
+    return (
+      <section>
+        {all}
+        {buttons}
+      </section>
+    );
   }
 
   componentWillReceiveProps(nextProps) {
@@ -61,13 +72,13 @@ class ShowIndex extends Component {
 
   render() {
 
-    let colors = [
-      "#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"
-    ];
-
-    $(".initiative-button").css(
-      "background-color", colors[Math.floor(Math.random() * 6)]
-    );
+    // let colors = [
+    //   "#9400D3", "#4B0082", "#0000FF", "#006400", "#FF7F00", "#B22222"
+    // ];
+    //
+    // $(".initiative-button").css(
+    //   "background-color", colors[Math.floor(Math.random() * 6)]
+    // );
 
     return(
       <div className="show-index">
@@ -80,10 +91,6 @@ class ShowIndex extends Component {
         </CompanyShowContainer>
         <section className="init-buttons-section">
           Filter by Initiative Category
-          <button
-            onClick={this.handleClick()}
-            className="initiative-button"
-            value="0" >all</button>
           {this.initiativeButtons()}
         </section>
       </div>
