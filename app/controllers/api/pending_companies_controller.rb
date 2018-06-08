@@ -6,7 +6,6 @@ class Api::PendingCompaniesController < ApplicationController
 
   def create
     @company = PendingCompany.new(pending_company_params)
-
     if @company.save
       @pending_companies = PendingCompany.all
       render template: "api/pending_companies/index.json.jbuilder"

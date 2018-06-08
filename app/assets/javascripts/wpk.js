@@ -1098,13 +1098,25 @@ var PendingCompanyForm = function (_Component) {
   function PendingCompanyForm(props) {
     _classCallCheck(this, PendingCompanyForm);
 
-    return _possibleConstructorReturn(this, (PendingCompanyForm.__proto__ || Object.getPrototypeOf(PendingCompanyForm)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (PendingCompanyForm.__proto__ || Object.getPrototypeOf(PendingCompanyForm)).call(this, props));
+
+    _this.state = {
+      pendingCompanies: _this.props.pendingCompanies
+    };
+    _this.handleDelete = _this.handleDelete.bind(_this);
+    return _this;
   }
 
   _createClass(PendingCompanyForm, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.props.fetchPendingComps();
+    }
+  }, {
+    key: 'handleDelete',
+    value: function handleDelete(id) {
+      this.props.deletePendingComp(id);
+      this.setState({ pendingCompanies: this.props.pendingCompanies });
     }
   }, {
     key: 'render',
@@ -1153,7 +1165,7 @@ var PendingCompanyForm = function (_Component) {
             'button',
             {
               onClick: function onClick() {
-                return _this2.props.deletePendingComp(comp.id);
+                return _this2.handleDelete(comp.id);
               }
             },
             'Delete'

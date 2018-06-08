@@ -5,10 +5,19 @@ import PropTypes from 'prop-types';
 class PendingCompanyForm extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      pendingCompanies: this.props.pendingCompanies
+    };
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchPendingComps();
+  }
+
+  handleDelete(id) {
+    this.props.deletePendingComp(id);
+    this.setState({pendingCompanies: this.props.pendingCompanies});
   }
 
   render() {
@@ -24,7 +33,7 @@ class PendingCompanyForm extends Component {
             onClick={ () => this.props.createCompany(comp)}
             >Approve Company</button>
           <button
-            onClick={ () => this.props.deletePendingComp(comp.id) }
+            onClick={ () => this.handleDelete(comp.id) }
             >Delete</button>
         </div>
       );
